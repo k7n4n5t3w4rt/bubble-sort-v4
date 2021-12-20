@@ -7,6 +7,7 @@
     "preact-render-to-string": "./preact-render-to-string.js",
     "preact-router": "./preact-router.js",
     "preact/hooks": "./preact/hooks.js",
+    "rxjs": "./rxjs.js",
     "should/as-function.js": "./should/as-function.js",
     "simplestyle-js": "./simplestyle-js.js"
   }

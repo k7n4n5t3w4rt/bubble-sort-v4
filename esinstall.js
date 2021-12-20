@@ -10,6 +10,7 @@ install(
     "preact/hooks",
     "preact-render-to-string",
     "preact-router",
+    "rxjs",
     "should/as-function.js",
     "simplestyle-js",
   ],
