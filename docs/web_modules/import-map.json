@@ -1,0 +1,13 @@
+{
+  "imports": {
+    "htm": "./htm.js",
+    "htm/preact": "./htm/preact.js",
+    "immer": "./immer.js",
+    "preact": "./preact.js",
+    "preact-render-to-string": "./preact-render-to-string.js",
+    "preact-router": "./preact-router.js",
+    "preact/hooks": "./preact/hooks.js",
+    "should/as-function.js": "./should/as-function.js",
+    "simplestyle-js": "./simplestyle-js.js"
+  }
+}
