@@ -13,6 +13,10 @@ install(
     "rxjs",
     "should/as-function.js",
     "simplestyle-js",
+    "three",
+    "three/examples/jsm/controls/OrbitControls",
+    "three/examples/jsm/loaders/TGALoader",
+    "three/examples/jsm/libs/stats.module.js"
   ],
   {
     polyfillNode: false,
