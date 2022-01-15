@@ -45,6 +45,10 @@ declare module "../web_modules/preact/hooks.js" {
   declare module.exports: any;
 }
 
+declare module "../../web_modules/preact/hooks.js" {
+  declare module.exports: any;
+}
+
 declare module "../web_modules/simplestyle-js.js" {
   declare module.exports: any;
 }
@@ -53,10 +57,30 @@ declare module "../web_modules/htm/preact.js" {
   declare module.exports: any;
 }
 
+declare module "../../web_modules/htm/preact.js" {
+  declare module.exports: any;
+}
+
 declare module "../web_modules/preact-router.js" {
   declare module.exports: any;
 }
 
 declare module "../web_modules/history.js" {
+  declare module.exports: any;
+}
+
+declare module "../../web_modules/three.js" {
+  declare module.exports: any;
+}
+
+declare module "../../web_modules/three/examples/jsm/libs/stats.module.js" {
+  declare module.exports: any;
+}
+
+declare module "../../web_modules/three/examples/jsm/controls/OrbitControls.js" {
+  declare module.exports: any;
+}
+
+declare module "../../web_modules/three/examples/jsm/loaders/TGALoader.js" {
   declare module.exports: any;
 }

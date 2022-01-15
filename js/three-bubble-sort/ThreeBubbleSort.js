@@ -1,3 +1,4 @@
+// @flow
 // --------------------------------------------------
 // THREE.js
 // --------------------------------------------------
@@ -17,6 +18,13 @@ import { ARButton } from "../vendor/ARButton.js";
 import setupMobileDebug from "../setup_mobile_debug.js";
 import createStats from "../create_stats.js";
 
+/*::
+type Props = {
+	cols: string,
+	rows: string,
+	speed: string,
+}
+*/
 export default (props /*: Props */) /*: string */ => {
   useEffect(() => {
     setupMobileDebug();
@@ -45,6 +53,7 @@ export default (props /*: Props */) /*: string */ => {
 
     function init() {
       const container = document.createElement("div");
+      // $FlowFixMe
       document.body.appendChild(container);
 
       camera = new THREE.PerspectiveCamera(
