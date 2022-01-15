@@ -20,8 +20,7 @@ const App /*: function */ = (props /*: Props */) => {
   return html`
     <${AppProvider} >
       <${Router} url="${props.url}">
-  		<${BubbleSort} finishCounter=${finishCounter} path="/two" />
-      <${ThreeBubbleSort} path="/" />
+      	<${ThreeBubbleSort} path="/" />
       </${Router}>
     </${AppProvider} >
   `;

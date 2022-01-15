@@ -1,18 +1,33 @@
+// --------------------------------------------------
+// THREE.js
+// --------------------------------------------------
 import * as THREE from "../../web_modules/three.js";
 import Stats from "../../web_modules/three/examples/jsm/libs/stats.module.js";
 import { OrbitControls } from "../../web_modules/three/examples/jsm/controls/OrbitControls.js";
 import { TGALoader } from "../../web_modules/three/examples/jsm/loaders/TGALoader.js";
-
+// --------------------------------------------------
+// PREACT
+// --------------------------------------------------
 import { useEffect, useState } from "../../web_modules/preact/hooks.js";
 import { html } from "../../web_modules/htm/preact.js";
+// --------------------------------------------------
+// HELPERS
+// --------------------------------------------------
+import { ARButton } from "../vendor/ARButton.js";
+import setupMobileDebug from "../setup_mobile_debug.js";
+import createStats from "../create_stats.js";
 
-const ThreeBubbleSort /*: function */ = (props /*: Props */) => {
+export default (props /*: Props */) /*: string */ => {
   useEffect(() => {
+    setupMobileDebug();
+
     const cols = Math.abs(parseInt(props.cols) || 4);
     const rows = Math.abs(parseInt(props.rows) || 4);
     const speed = Math.abs(parseFloat(props.speed) || 0.05);
 
-    let camera, scene, renderer, stats, cubes;
+    let camera, scene, renderer, cubes;
+    let stats = createStats();
+
     let x1 = cols - 1,
       y1 = rows - 1,
       x2 = 0,
@@ -56,6 +71,7 @@ const ThreeBubbleSort /*: function */ = (props /*: Props */) => {
             color: `rgb(${cellColour},${cellColour},${cellColour})`,
           });
           const cube = new THREE.Mesh(geometry, material);
+          cube.position.z = 0;
           cube.position.x = i;
           cube.position.y = j;
           cube.initial_pos_x = i;
@@ -79,13 +95,23 @@ const ThreeBubbleSort /*: function */ = (props /*: Props */) => {
       renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(window.innerWidth, window.innerHeight);
+      // This next line is important to to enable the renderer for WebXR
+      renderer.xr.enabled = true; // New!
       container.appendChild(renderer.domElement);
 
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.enableZoom = false;
 
-      stats = new Stats();
       container.appendChild(stats.dom);
+
+      const button = ARButton.createButton(renderer, {
+        optionalFeatures: ["dom-overlay", "dom-overlay-for-handheld-ar"],
+        domOverlay: {
+          root: document.body,
+        },
+      });
+      // $FlowFixMe
+      document.body.appendChild(button);
 
       window.addEventListener("resize", onWindowResize);
     }
@@ -168,7 +194,9 @@ const ThreeBubbleSort /*: function */ = (props /*: Props */) => {
     }
   });
 
-  return html` <div></div> `;
+  return html`
+    <div>
+      <div id="console-ui"></div>
+    </div>
+  `;
 };
-
-export default ThreeBubbleSort;
