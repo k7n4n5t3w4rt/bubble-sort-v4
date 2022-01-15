@@ -20,7 +20,7 @@
     "three": "^0.136.0"
   },
   "devDependencies": {
-    "browser-sync": "^2.26.7",
+    "browser-sync": "^2.27.7",
     "cypress": "^4.11.0",
     "esinstall": "^1.1.7",
     "faucet": "0.0.1",
