@@ -3,30 +3,43 @@
 export default (
   stateCubesX1Y1X2Y2 /*: CubesX1Y1X2Y2 */,
   speed /*: number */,
-  cube_values_x /*: Array<number> */,
-  cube_values_y /*: Array<number> */,
-  next /*: boolean */,
+  scale /*: number */,
+  cols /*: number */,
+  rows /*: number */,
 ) /*: CubesX1Y1X2Y2 */ => {
+  // NOTE:
+  // This might not be very clear so:
+  //
+  // stateCubesX1Y1X2Y2.cubes is an an array of columns of cubes.
+  // Each cube object is a REFERENCE to a THREE.js Mesh object that
+  // was atached to the THREE.js scene in:
+  //
+  //		/js/three-bubble-sort/actions/pixelGrid.js (Line 34)
+  //
+  let next = false;
   let { cubes, x1, y1, x2, y2 } = stateCubesX1Y1X2Y2;
   if (
-    cubes[x1][y1].bubble_value !== undefined &&
-    cubes[x2][y2].bubble_value !== undefined &&
     cubes[x1][y1].bubble_value > cubes[x2][y2].bubble_value &&
     cubes[x1][y1].pos > cubes[x2][y2].pos
   ) {
     next = false;
+    // Get the x and y differences
     const dx = cubes[x1][y1].position.x - cubes[x2][y2].initial_pos_x;
     const dy = cubes[x1][y1].position.y - cubes[x2][y2].initial_pos_y;
-    if (dx !== 0 || dy !== 0) {
-      const dz = 2 + cubes[x1][y1].position.z;
-      const valX = Math.min(speed, dx);
-      let valY = Math.min(speed, dy);
+    // If at least one of them still has to move...
+    if (dx > 0 || dy > 0) {
+      const dz = 2 * scale + cubes[x1][y1].position.z;
+      // Are we moving by a full "speed" jump, or by a smaller d* jump?
+      const valX = Math.min(speed * scale, dx);
+      let valY = Math.min(speed * scale, dy);
+      const valZ = Math.min(speed * scale, dz);
+      // NOT SURE
       if (valY < 0) valY = -1 * speed;
-      const valZ = Math.min(speed, dz);
 
       cubes[x1][y1].position.z -= valZ;
       cubes[x2][y2].position.z -= valZ;
-      if (cubes[x1][y1].position.z === -2) {
+      // Check if we are at the max z position
+      if (cubes[x1][y1].position.z <= -(2 * scale)) {
         cubes[x1][y1].position.x -= valX;
         cubes[x2][y2].position.x += valX;
         cubes[x1][y1].position.y -= valY;
@@ -34,18 +47,16 @@ export default (
       }
     }
 
-    if (dx === 0 && dy === 0) {
-      const dzb = cubes[x1][y1].position.z * -1;
-      let valZb = Math.abs(Math.min(speed, dzb));
+    if (dx < scale && dy < scale) {
+      const dzb = cubes[x1][y1].position.z * -(1 * scale);
+      let valZb = Math.abs(Math.min(speed * scale, dzb));
       cubes[x1][y1].position.z += valZb;
       cubes[x2][y2].position.z += valZb;
 
-      if (valZb === 0) {
+      if (valZb < scale) {
         next = true;
-        let pos1 = cubes[x1][y1].pos;
-        let pos2 = cubes[x2][y2].pos;
-        cubes[x1][y1].pos = pos2;
-        cubes[x2][y2].pos = pos1;
+        cubes[x1][y1].pos = cubes[x2][y2].pos;
+        cubes[x2][y2].pos = cubes[x1][y1].pos;
         cubes[x1][y1].initial_pos_x = cubes[x1][y1].position.x;
         cubes[x1][y1].initial_pos_y = cubes[x1][y1].position.y;
         cubes[x2][y2].initial_pos_x = cubes[x2][y2].position.x;
@@ -53,16 +64,16 @@ export default (
       }
     }
     if (next) {
-      x1 = Math.floor(Math.random() * cube_values_x.length);
-      y1 = Math.floor(Math.random() * cube_values_y.length);
-      x2 = Math.floor(Math.random() * cube_values_x.length);
-      y2 = Math.floor(Math.random() * cube_values_y.length);
+      x1 = Math.floor(Math.random() * cols);
+      y1 = Math.floor(Math.random() * rows);
+      x2 = Math.floor(Math.random() * cols);
+      y2 = Math.floor(Math.random() * rows);
     }
   } else {
-    x1 = Math.floor(Math.random() * cube_values_x.length);
-    y1 = Math.floor(Math.random() * cube_values_y.length);
-    x2 = Math.floor(Math.random() * cube_values_x.length);
-    y2 = Math.floor(Math.random() * cube_values_y.length);
+    x1 = Math.floor(Math.random() * cols);
+    y1 = Math.floor(Math.random() * rows);
+    x2 = Math.floor(Math.random() * cols);
+    y2 = Math.floor(Math.random() * rows);
   }
   return { cubes, x1, y1, x2, y2 };
 };

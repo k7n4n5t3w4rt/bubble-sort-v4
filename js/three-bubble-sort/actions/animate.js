@@ -2,38 +2,29 @@
 import move from "./move.js";
 
 const animate = (
-  cubesX1Y1X2Y2 /*: CubesX1Y1X2Y2 */,
+  sceneData /*: Object */,
   speed /*: number */,
-  stats /*: Object */,
+  scale /*: number */,
   cols /*: number */,
   rows /*: number */,
-  render /*: function */,
-) /*: ()=> void  */ => {
-  return () /*: void */ => {
-    // Create arrays filled with numbers
-    // that are the indexes
-    const cube_values_x = Array(cols)
-      .fill()
-      .map((x, i) => i);
-    const cube_values_y = Array(rows)
-      .fill()
-      .map((x, i) => i);
-    let next = false;
+) /*: void  */ => {
+  const { stats, scene, camera, renderer, cubes } = sceneData;
+  // The grid of cubes
+  const cubesX1Y1X2Y2 = {};
+  cubesX1Y1X2Y2.cubes = sceneData.cubes;
+  // Values for iterating the length of the arrays
+  cubesX1Y1X2Y2.x1 = cols - 1;
+  cubesX1Y1X2Y2.y1 = rows - 1;
+  cubesX1Y1X2Y2.x2 = 0;
+  cubesX1Y1X2Y2.y2 = 0;
 
-    requestAnimationFrame(() /*: void */ => {
-      animate(
-        move(cubesX1Y1X2Y2, speed, cube_values_x, cube_values_y, next),
-        speed,
-        stats,
-        cols,
-        rows,
-        render,
-      )();
-    });
+  function render() {
+    move(cubesX1Y1X2Y2, speed, scale, cols, rows);
+    sceneData.stats.update();
+    renderer.render(scene, camera);
+  }
 
-    stats.update();
-    render();
-  };
+  sceneData.renderer.setAnimationLoop(render);
 };
 
 export default animate;

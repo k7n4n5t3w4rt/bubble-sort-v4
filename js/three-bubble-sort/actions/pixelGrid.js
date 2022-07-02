@@ -10,6 +10,7 @@ import * as THREE from "../../../web_modules/three.js";
 export default (
   cols /*: number */,
   rows /*: number */,
+  scale /*: number */,
   geometry /*: Object */,
   scene /*: Object */,
 ) /*: Array<Array<Object>> */ => {
@@ -24,10 +25,10 @@ export default (
       });
       const cube = new THREE.Mesh(geometry, material);
       cube.position.z = 0;
-      cube.position.x = i;
-      cube.position.y = j;
-      cube.initial_pos_x = i;
-      cube.initial_pos_y = j;
+      cube.position.x = i * scale;
+      cube.position.y = j * scale;
+      cube.initial_pos_x = i * scale;
+      cube.initial_pos_y = j * scale;
       cube.bubble_value = cellColour;
       cube.pos = pos;
       pos++;

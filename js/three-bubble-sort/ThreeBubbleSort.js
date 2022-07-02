@@ -26,6 +26,7 @@ type Props = {
 	cols: string,
 	rows: string,
 	speed: string,
+	scale: string,
 }
 */
 export default (props /*: Props */) /*: string */ => {
@@ -35,31 +36,13 @@ export default (props /*: Props */) /*: string */ => {
     const cols = Math.abs(parseInt(props.cols) || 8);
     const rows = Math.abs(parseInt(props.rows) || 4);
     const speed = Math.abs(parseFloat(props.speed) || 0.05);
+    const scale = Math.abs(parseFloat(props.scale) || 0.1);
 
     let camera, scene, renderer, cubes;
     let stats = createStats();
 
-    const sceneData /*: SceneData */ = init(cols, rows, speed);
-    stats = sceneData.stats;
-    scene = sceneData.scene;
-    camera = sceneData.camera;
-    renderer = sceneData.renderer;
-    // The grid of cubes
-    initialStateCubesX1Y1X2Y2.cubes = sceneData.cubes;
-    // Values for iterating the length of the arrays
-    initialStateCubesX1Y1X2Y2.x1 = cols - 1;
-    initialStateCubesX1Y1X2Y2.y1 = rows - 1;
-    initialStateCubesX1Y1X2Y2.x2 = 0;
-    initialStateCubesX1Y1X2Y2.y2 = 0;
-
-    animate(
-      initialStateCubesX1Y1X2Y2,
-      speed,
-      stats,
-      cols,
-      rows,
-      render(scene, camera, renderer),
-    )();
+    const sceneData /*: SceneData */ = init(cols, rows, speed, scale);
+    animate(sceneData, speed, scale, cols, rows);
   });
 
   return html`
