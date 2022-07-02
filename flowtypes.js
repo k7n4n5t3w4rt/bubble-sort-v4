@@ -13,6 +13,40 @@ type config = {
   FINISH_COUNTER: Object,
 };
 
+type Position = {
+  x: number,
+  y: number,
+  z: number,
+};
+
+type Cube = {
+  position: Position,
+  initial_pos_x: number,
+  initial_pos_y: number,
+  bubble_value: number,
+  pos: number,
+};
+
+type Col = Array<Cube>;
+
+type Cubes = Array<Col>;
+
+type SceneData = {
+  stats: Object,
+  scene: Object,
+  camera: Object,
+  renderer: Object,
+  cubes: Cubes,
+};
+
+type CubesX1Y1X2Y2 = {
+  cubes: Cubes,
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+};
+
 declare module "finalhandler" {
   declare module.exports: any;
 }
@@ -73,6 +107,10 @@ declare module "../../web_modules/three.js" {
   declare module.exports: any;
 }
 
+declare module "../../../web_modules/three.js" {
+  declare module.exports: any;
+}
+
 declare module "../../web_modules/three/examples/jsm/libs/stats.module.js" {
   declare module.exports: any;
 }
@@ -81,6 +119,9 @@ declare module "../../web_modules/three/examples/jsm/controls/OrbitControls.js" 
   declare module.exports: any;
 }
 
+declare module "../../../web_modules/three/examples/jsm/controls/OrbitControls.js" {
+  declare module.exports: any;
+}
 declare module "../../web_modules/three/examples/jsm/loaders/TGALoader.js" {
   declare module.exports: any;
 }
