@@ -11,15 +11,16 @@ export default (
   cols /*: number */,
   rows /*: number */,
   scale /*: number */,
-  geometry /*: Object */,
   scene /*: Object */,
 ) /*: Array<Array<Object>> */ => {
-  const cubes /*: Array<Col> */ = [];
+  const pixelGrid /*: Array<Col> */ = [];
   let pos = 0;
   for (let i = 0; i > -cols; i--) {
     const col /*: Col */ = [];
     for (let j = 0; j > -rows; j--) {
       const cellColour = 255 - Math.ceil(255 * Math.random());
+      const geometry = new THREE.BoxGeometry(1 * scale, 1 * scale, 1 * scale);
+
       const material = new THREE.MeshBasicMaterial({
         color: `rgb(${cellColour},${cellColour},${cellColour})`,
       });
@@ -35,7 +36,7 @@ export default (
       scene.add(cube);
       col.push(cube);
     }
-    cubes.push(col);
+    pixelGrid.push(col);
   }
-  return cubes;
+  return pixelGrid;
 };

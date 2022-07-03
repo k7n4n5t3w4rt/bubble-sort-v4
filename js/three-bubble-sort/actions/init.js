@@ -12,6 +12,7 @@ import createStats from "../../create_stats.js";
 import pixelGrid from "./pixelGrid.js";
 import onWindowResize from "../calculations/onWindowResize.js";
 import animate from "./animate.js";
+import addReticleToScene from "../calculations/addReticleToScene.js";
 
 export default (
   cols /*: number */,
@@ -24,16 +25,6 @@ export default (
 
   // The stats display for AR
   sceneData.stats = createStats();
-  /*::
-  	type SceneData = {
-		stats:Object,
-		scene:Object,
-		camera:Object,
-		geometry:Object,
-		renderer:Object,
-		cubes: Cubes
-	}
-  */
   const container = document.createElement("div");
   // $FlowFixMe - Flow doesn't know about the DOM
   document.body.appendChild(container);
@@ -50,14 +41,14 @@ export default (
   sceneData.camera.position.y = Math.abs(parseInt(rows / 2)) * scale;
   sceneData.camera.position.x = Math.abs(parseInt(cols / 2)) * scale;
 
-  sceneData.geometry = new THREE.BoxGeometry(1 * scale, 1 * scale, 1 * scale);
-
   // https://threejs.org/docs/#api/en/lights/HemisphereLight
   const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
   light.position.set(0.5, 1, 0.25);
   sceneData.scene.add(light);
   //   const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
   //   scene.add(ambientLight);
+
+  sceneData.reticleStuff = addReticleToScene(sceneData);
 
   // https://threejs.org/docs/#api/en/renderers/WebGLRenderer
   sceneData.renderer = new THREE.WebGLRenderer({
@@ -79,7 +70,7 @@ export default (
   container.appendChild(sceneData.stats.dom);
 
   const button = ARButton.createButton(sceneData.renderer, {
-    optionalFeatures: ["dom-overlay", "dom-overlay-for-handheld-ar"],
+    optionalFeatures: ["hit-test"],
     domOverlay: {
       root: document.body,
     },
@@ -88,21 +79,22 @@ export default (
   // $FlowFixMe
   document.body.appendChild(button);
 
-  function onSelect() {
-    // Build the grid of pixels
-    const cubes /*: Cubes */ = {};
-    cubes.moving = false;
-    cubes.pixelGrid = pixelGrid(
-      cols,
-      rows,
-      scale,
-      sceneData.geometry,
-      sceneData.scene,
-    );
-    animate(sceneData, speed, scale, cols, rows, cubes);
-  }
-  const controller = sceneData.renderer.xr.getController(0);
-  controller.addEventListener("select", onSelect);
+  //   function onSelect() {
+  // Build the grid of pixels
+  // sceneData.cubes = {};
+  //   sceneData.cubes.pixelGrid = pixelGrid(
+  //     cols,
+  //     rows,
+  //     scale,
+  //     sceneData.geometry,
+  //     sceneData.scene,
+  //   );
+  //   sceneData.cubes.moving = false;
+  // animate(sceneData, speed, scale, cols, rows, cubes);
+  animate(sceneData, speed, scale, cols, rows);
+  //   }
+  //   const controller = sceneData.renderer.xr.getController(0);
+  //   controller.addEventListener("select", onSelect);
 
   window.addEventListener(
     "resize",

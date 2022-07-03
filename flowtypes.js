@@ -34,20 +34,22 @@ type Cubes = {
   moving: boolean,
 };
 
+type ReticleStuff = {
+  reticle: Object,
+  hitTestSource?: Object,
+  localSpace?: Object,
+  viewerSpace?: Object,
+  hitTestSourceInitialized?: Object,
+};
+
 type SceneData = {
   stats: Object,
   scene: Object,
   camera: Object,
   renderer: Object,
+  reticleStuff: ReticleStuff,
 };
-
-type CubesX1Y1X2Y2 = {
-  cubes: Cubes,
-  x1: number,
-  y1: number,
-  x2: number,
-  y2: number,
-};
+// cubes: Cubes,
 
 declare module "finalhandler" {
   declare module.exports: any;
