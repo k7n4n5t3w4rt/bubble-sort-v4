@@ -2,12 +2,11 @@
 // --------------------------------------------------
 // HELPERS
 // --------------------------------------------------
-import initializeHitTestSource from "./initializeHitTestSource";
+import move from "./move.js";
+import initializeHitTestSource from "./initializeHitTestSource.js";
 
-export default (
-  sceneData /*: SceneData */,
-) /*: () => Promise<SceneData>  */ => {
-  return async (timestamp, frame) /*: Promise<SceneData> */ => {
+export default (sceneData /*: SceneData */) /*: () => Promise<any>  */ => {
+  return async (timestamp, frame) /*: Promise<any> */ => {
     if (frame) {
       // 1. create a hit test source once and keep it for all the frames
       // this gets called only once
@@ -42,8 +41,6 @@ export default (
       // cubes = move(cubes, speed, cols, rows);
       renderer.render(scene, camera);
       // return { stats, scene, camera, renderer, reticleStuff, cubes };
-      return { stats, scene, camera, renderer, reticleStuff };
     }
-    return sceneData;
   };
 };

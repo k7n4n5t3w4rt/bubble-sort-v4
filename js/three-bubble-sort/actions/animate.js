@@ -2,7 +2,6 @@
 // --------------------------------------------------
 // HELPERS
 // --------------------------------------------------
-import move from "./move.js";
 import render from "./render.js";
 
 const animate = (
@@ -15,7 +14,7 @@ const animate = (
   // const { stats, scene, camera, renderer, reticleStuff, cubes } = sceneData;
   const { stats, scene, camera, renderer, reticleStuff } = sceneData;
 
-  sceneData.renderer.setAnimationLoop(render);
+  sceneData.renderer.setAnimationLoop(render(sceneData));
   // return { stats, scene, camera, renderer, reticleStuff, cubes };
   return { stats, scene, camera, renderer, reticleStuff };
 };

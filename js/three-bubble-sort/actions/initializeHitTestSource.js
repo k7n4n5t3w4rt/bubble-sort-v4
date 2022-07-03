@@ -5,7 +5,6 @@
 
 // This function gets called just once to initialize a hitTestSource
 // The purpose of this function is to get a) a hit test source and b) a reference space
-import init from "browser-sync/dist/public/init";
 
 export default async (sceneData /*: SceneData */) /*: Promise<SceneData> */ => {
   const { stats, scene, camera, renderer, reticleStuff } = sceneData;
