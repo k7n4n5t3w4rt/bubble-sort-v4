@@ -30,7 +30,7 @@ type Props = {
 export default (props /*: Props */) /*: string */ => {
   const cols = Math.abs(parseInt(props.cols) || 8);
   const rows = Math.abs(parseInt(props.rows) || 4);
-  const speed = Math.abs(parseFloat(props.speed) || 0.05);
+  const speed = Math.abs(parseFloat(props.speed) || 1);
   const scale = Math.abs(parseFloat(props.scale) || 0.1);
 
   useEffect(() => {

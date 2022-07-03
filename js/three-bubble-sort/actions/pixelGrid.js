@@ -14,7 +14,7 @@ export default (
   geometry /*: Object */,
   scene /*: Object */,
 ) /*: Array<Array<Object>> */ => {
-  const cubes /*: Cubes */ = [];
+  const cubes /*: Array<Col> */ = [];
   let pos = 0;
   for (let i = 0; i > -cols; i--) {
     const col /*: Col */ = [];

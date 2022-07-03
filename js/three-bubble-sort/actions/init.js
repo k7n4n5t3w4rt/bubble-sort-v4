@@ -88,25 +88,26 @@ export default (
   // $FlowFixMe
   document.body.appendChild(button);
 
-  //function onSelect() {
-  // Build the grid of pixels
-  const cubes /*: Cubes */ = pixelGrid(
-    cols,
-    rows,
-    scale,
-    sceneData.geometry,
-    sceneData.scene,
-  );
-  animate(sceneData, speed, scale, cols, rows, cubes);
-  //   }
-  //   const controller = sceneData.renderer.xr.getController(0);
-  //   controller.addEventListener("select", onSelect);
+  function onSelect() {
+    // Build the grid of pixels
+    const cubes /*: Cubes */ = {};
+    cubes.moving = false;
+    cubes.pixelGrid = pixelGrid(
+      cols,
+      rows,
+      scale,
+      sceneData.geometry,
+      sceneData.scene,
+    );
+    animate(sceneData, speed, scale, cols, rows, cubes);
+  }
+  const controller = sceneData.renderer.xr.getController(0);
+  controller.addEventListener("select", onSelect);
 
   window.addEventListener(
     "resize",
     onWindowResize(sceneData.camera, sceneData.renderer, window),
   );
 
-  // return { stats, scene, camera, renderer };
   return sceneData;
 };

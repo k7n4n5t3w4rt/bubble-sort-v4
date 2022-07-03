@@ -29,7 +29,10 @@ type Cube = {
 
 type Col = Array<Cube>;
 
-type Cubes = Array<Col>;
+type Cubes = {
+  pixelGrid: Array<Col>,
+  moving: boolean,
+};
 
 type SceneData = {
   stats: Object,
@@ -124,6 +127,6 @@ declare module "../../../web_modules/three/examples/jsm/controls/OrbitControls.j
 declare module "../../web_modules/three/examples/jsm/loaders/TGALoader.js" {
   declare module.exports: any;
 }
-declare module "../../web_modules/anime.js" {
+declare module "../../../web_modules/animejs.js" {
   declare module.exports: any;
 }
