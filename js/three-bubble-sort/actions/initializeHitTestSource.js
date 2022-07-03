@@ -32,6 +32,5 @@ export default async (sceneData /*: SceneData */) /*: Promise<SceneData> */ => {
     reticleStuff.hitTestSourceInitialized = false;
     reticleStuff.hitTestSource = null;
   });
-  // return { stats, scene, camera, renderer, reticleStuff, cubes };
   return { stats, scene, camera, renderer, reticleStuff };
 };

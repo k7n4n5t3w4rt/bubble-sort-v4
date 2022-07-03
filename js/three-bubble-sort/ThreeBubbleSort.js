@@ -36,7 +36,7 @@ export default (props /*: Props */) /*: string */ => {
   useEffect(() => {
     setupMobileDebug();
     let stats = createStats();
-    const sceneData = init(cols, rows, speed, scale);
+    init(cols, rows, speed, scale);
   });
 
   return html`
