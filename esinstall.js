@@ -3,6 +3,7 @@ import { install } from "esinstall";
 
 install(
   [
+    "animejs",
     "htm",
     "htm/preact",
     "immer",
@@ -16,7 +17,7 @@ install(
     "three",
     "three/examples/jsm/controls/OrbitControls",
     "three/examples/jsm/loaders/TGALoader",
-    "three/examples/jsm/libs/stats.module.js"
+    "three/examples/jsm/libs/stats.module.js",
   ],
   {
     polyfillNode: false,

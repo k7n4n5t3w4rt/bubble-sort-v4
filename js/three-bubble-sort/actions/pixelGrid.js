@@ -16,9 +16,9 @@ export default (
 ) /*: Array<Array<Object>> */ => {
   const cubes /*: Cubes */ = [];
   let pos = 0;
-  for (let i = 0; i < cols; i++) {
+  for (let i = 0; i > -cols; i--) {
     const col /*: Col */ = [];
-    for (let j = 0; j < rows; j++) {
+    for (let j = 0; j > -rows; j--) {
       const cellColour = 255 - Math.ceil(255 * Math.random());
       const material = new THREE.MeshBasicMaterial({
         color: `rgb(${cellColour},${cellColour},${cellColour})`,

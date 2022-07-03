@@ -36,7 +36,6 @@ type SceneData = {
   scene: Object,
   camera: Object,
   renderer: Object,
-  cubes: Cubes,
 };
 
 type CubesX1Y1X2Y2 = {
@@ -123,5 +122,8 @@ declare module "../../../web_modules/three/examples/jsm/controls/OrbitControls.j
   declare module.exports: any;
 }
 declare module "../../web_modules/three/examples/jsm/loaders/TGALoader.js" {
+  declare module.exports: any;
+}
+declare module "../../web_modules/anime.js" {
   declare module.exports: any;
 }

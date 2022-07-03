@@ -7,6 +7,7 @@
     "url": "https://github.com/k7n4n5t3w4rt/goodthing/issues"
   },
   "dependencies": {
+    "animejs": "^3.2.1",
     "finalhandler": "^1.1.2",
     "history": "^4.10.1",
     "htm": "^3.0.4",

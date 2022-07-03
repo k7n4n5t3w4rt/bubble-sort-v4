@@ -18,8 +18,6 @@ import { ARButton } from "../vendor/ARButton.js";
 import setupMobileDebug from "../setup_mobile_debug.js";
 import createStats from "../create_stats.js";
 import init from "./actions/init.js";
-import animate from "./actions/animate.js";
-import render from "./actions/render.js";
 
 /*::
 type Props = {
@@ -30,19 +28,15 @@ type Props = {
 }
 */
 export default (props /*: Props */) /*: string */ => {
+  const cols = Math.abs(parseInt(props.cols) || 8);
+  const rows = Math.abs(parseInt(props.rows) || 4);
+  const speed = Math.abs(parseFloat(props.speed) || 0.05);
+  const scale = Math.abs(parseFloat(props.scale) || 0.1);
+
   useEffect(() => {
     setupMobileDebug();
-    let initialStateCubesX1Y1X2Y2 /*: CubesX1Y1X2Y2 */ = {};
-    const cols = Math.abs(parseInt(props.cols) || 8);
-    const rows = Math.abs(parseInt(props.rows) || 4);
-    const speed = Math.abs(parseFloat(props.speed) || 0.05);
-    const scale = Math.abs(parseFloat(props.scale) || 0.1);
-
-    let camera, scene, renderer, cubes;
     let stats = createStats();
-
-    const sceneData /*: SceneData */ = init(cols, rows, speed, scale);
-    animate(sceneData, speed, scale, cols, rows);
+    const sceneData = init(cols, rows, speed, scale);
   });
 
   return html`
