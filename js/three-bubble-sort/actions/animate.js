@@ -11,12 +11,13 @@ const animate = (
   cols /*: number */,
   rows /*: number */,
 ) /*: SceneData  */ => {
-  // const { stats, scene, camera, renderer, reticleStuff, cubes } = sceneData;
-  const { stats, scene, camera, renderer, reticleStuff } = sceneData;
+  const { stats, scene, camera, renderer, reticleStuff, cubes } = sceneData;
+  // const { stats, scene, camera, renderer, reticleStuff } = sceneData;
 
-  sceneData.renderer.setAnimationLoop(render(sceneData));
-  // return { stats, scene, camera, renderer, reticleStuff, cubes };
-  return { stats, scene, camera, renderer, reticleStuff };
+  sceneData.renderer.setAnimationLoop(
+    render(sceneData, speed, scale, cols, rows),
+  );
+  return { stats, scene, camera, renderer, reticleStuff, cubes };
 };
 
 export default animate;

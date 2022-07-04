@@ -7,7 +7,7 @@
 // The purpose of this function is to get a) a hit test source and b) a reference space
 
 export default async (sceneData /*: SceneData */) /*: Promise<SceneData> */ => {
-  const { stats, scene, camera, renderer, reticleStuff } = sceneData;
+  const { stats, scene, camera, renderer, reticleStuff, cubes } = sceneData;
   const session = renderer.xr.getSession();
 
   // Reference spaces express relationships between an origin and the world.
@@ -32,5 +32,5 @@ export default async (sceneData /*: SceneData */) /*: Promise<SceneData> */ => {
     reticleStuff.hitTestSourceInitialized = false;
     reticleStuff.hitTestSource = null;
   });
-  return { stats, scene, camera, renderer, reticleStuff };
+  return { stats, scene, camera, renderer, reticleStuff, cubes };
 };

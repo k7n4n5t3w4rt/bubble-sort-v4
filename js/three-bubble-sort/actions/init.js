@@ -80,38 +80,19 @@ export default (
   // $FlowFixMe
   document.body.appendChild(button);
 
+  const cubes = {};
+
   function onSelect() {
     if (reticleStuff.reticle.visible) {
-      // cone added at the point of a hit test
-      // replace the next lines to add your own object in space
-      const geometry = new THREE.CylinderBufferGeometry(0, 0.05, 0.2, 32);
-      const material = new THREE.MeshPhongMaterial({
-        color: 0xffffff * Math.random(),
-      });
-      const mesh = new THREE.Mesh(geometry, material);
-
-      // set the position of the cylinder based on where the reticle is
-      mesh.position.setFromMatrixPosition(reticleStuff.reticle.matrix);
-      mesh.quaternion.setFromRotationMatrix(reticleStuff.reticle.matrix);
-
-      scene.add(mesh);
       reticleStuff.active = false;
     }
     // Build the grid of pixels
-    // const cubes = {};
-    //   const cubes.pixelGrid = pixelGrid(
-    //     cols,
-    //     rows,
-    //     scale,
-    //     const geometry,
-    //     const scene,
-    //   );
-    //   const cubes.moving = false;
-    // animate(sceneData, speed, scale, cols, rows, cubes);
+    cubes.pixelGrid = pixelGrid(cols, rows, scale, scene, reticleStuff);
+    cubes.moving = false;
   }
 
   animate(
-    { stats, scene, camera, renderer, reticleStuff },
+    { stats, scene, camera, renderer, reticleStuff, cubes },
     speed,
     scale,
     cols,

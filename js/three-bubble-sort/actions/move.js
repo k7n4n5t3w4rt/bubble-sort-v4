@@ -4,8 +4,10 @@ import anime from "../../../web_modules/animejs.js";
 const move = (
   cubes /*: Cubes */,
   speed /*: number */,
+  scale /*: number */,
   cols /*: number */,
   rows /*: number */,
+  reticleStuff /*: ReticleStuff */,
 ) /*: Cubes */ => {
   // NOTE:
   // This might not be very clear so:
@@ -16,57 +18,61 @@ const move = (
   //
   //		/js/three-bubble-sort/actions/pixelGrid.js (Line 34)
   //
+  let x1y1StartPos /*: Object */;
+  let pos1 /*: number */;
+  let pos2 /*: number */;
+  let movingX1Y1 /*: boolean */ = true;
+  let movingX2Y2 /*: boolean */ = true;
+  let x1Y1 /*: Object */;
+  let x2Y2 /*: Object */;
+
   let x1 = Math.floor(Math.random() * cols);
   let y1 = Math.floor(Math.random() * rows);
   let x2 = Math.floor(Math.random() * cols);
   let y2 = Math.floor(Math.random() * rows);
+  x1Y1 = cubes.pixelGrid[x1][y1];
+  x2Y2 = cubes.pixelGrid[x2][y2];
 
   console.log(`Trying [${x1}, ${y1}] and [${x2}, ${y2}]...`);
-  if (
-    cubes.moving === false &&
-    cubes.pixelGrid[x1][y1].bubble_value > cubes.pixelGrid[x2][y2].bubble_value
-  ) {
+
+  if (cubes.moving === false && x1Y1.bubble_value > x2Y2.bubble_value) {
     console.log(`[${x1}, ${y1}] bubble value IS > [${x2}, ${y2}]...`);
 
-    let x1y1StartPos /*: Object */;
-    let pos1 /*: number */;
-    let pos2 /*: number */;
-    let movingX1Y1 /*: boolean */ = true;
-    let movingX2Y2 /*: boolean */ = true;
-
-    if (
-      cubes.moving === false &&
-      cubes.pixelGrid[x1][y1].pos > cubes.pixelGrid[x2][y2].pos
-    ) {
+    if (cubes.moving === false && x1Y1.pos > x2Y2.pos) {
       console.log(`[${x1}, ${y1}] pos IS > [${x2}, ${y2}]...`);
       console.log(`Preparing to swap [${x1}, ${y1}] and [${x2}, ${y2}]...`);
-      // x1y1StartPos = cubes.pixelGrid[x1][y1].position;
+
       x1y1StartPos = {
-        x: cubes.pixelGrid[x1][y1].position.x,
-        y: cubes.pixelGrid[x1][y1].position.y,
+        x: x1Y1.position.x,
+        y: x1Y1.position.y,
       };
       cubes.moving = true;
+
       // Move x1y1
       anime({
-        targets: [cubes.pixelGrid[x1][y1].position],
+        targets: [x1Y1.position],
         z: [
-          { value: -0.2, duration: (1000 * speed) / 2, delay: 0 },
           {
-            value: 0,
+            value: x1Y1.position.z - 0.2 * scale,
+            duration: (1000 * speed) / 2,
+            delay: 0,
+          },
+          {
+            value: x1Y1.position.z,
             duration: 1000 * speed,
             delay: 0,
           },
         ],
         x: [
           {
-            value: cubes.pixelGrid[x2][y2].position.x,
+            value: x2Y2.position.x,
             duration: 1000 * speed,
             delay: 0,
           },
         ],
         y: [
           {
-            value: cubes.pixelGrid[x2][y2].position.y,
+            value: x2Y2.position.y,
             duration: 1000 * speed,
             delay: 0,
           },
@@ -84,11 +90,15 @@ const move = (
         },
       });
       anime({
-        targets: [cubes.pixelGrid[x2][y2].position],
+        targets: [x2Y2.position],
         z: [
-          { value: 0.2, duration: (1000 * speed) / 2, delay: 0 },
           {
-            value: 0,
+            value: x2Y2.position.z + 2 * scale,
+            duration: (1000 * speed) / 2,
+            delay: 0,
+          },
+          {
+            value: x2Y2.position.z,
             duration: 1000 * speed,
             delay: 0,
           },
@@ -99,10 +109,10 @@ const move = (
         easing: "easeInOutCirc",
         complete: function (anim) {
           //   completeLogEl.value = 'completed : ' + anim.completed;
-          pos1 = cubes.pixelGrid[x1][y1].pos;
-          pos2 = cubes.pixelGrid[x2][y2].pos;
-          cubes.pixelGrid[x1][y1].pos = pos2;
-          cubes.pixelGrid[x2][y2].pos = pos1;
+          pos1 = x1Y1.pos;
+          pos2 = x2Y2.pos;
+          x1Y1.pos = pos2;
+          x2Y2.pos = pos1;
           movingX2Y2 = false;
           if (movingX1Y1 === false) {
             cubes.moving = false;

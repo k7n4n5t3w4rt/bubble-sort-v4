@@ -49,8 +49,8 @@ type SceneData = {
   camera: Object,
   renderer: Object,
   reticleStuff: ReticleStuff,
+  cubes: Cubes,
 };
-// cubes: Cubes,
 
 declare module "finalhandler" {
   declare module.exports: any;
