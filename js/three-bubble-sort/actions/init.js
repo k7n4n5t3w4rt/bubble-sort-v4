@@ -87,8 +87,22 @@ export default (
       reticleStuff.active = false;
     }
     // Build the grid of pixels
-    cubes.pixelGrid = pixelGrid(cols, rows, scale, scene, reticleStuff);
+    const { pixelGridGroup, pixelGridCubes } = pixelGrid(
+      cols,
+      rows,
+      scale,
+      scene,
+      reticleStuff,
+    );
+    cubes.pixelGrid = pixelGridCubes;
+    cubes.pixelGridGroup = pixelGridGroup;
     cubes.moving = false;
+
+    // const vector = new THREE.Vector3(); // create once and reuse it!
+    // camera.getWorldDirection(vector);
+    // const radians = Math.atan2(vector.x, vector.z);
+    // cubes.pixelGridGroup.rotateY(radians);
+    cubes.pixelGridGroup.lookAt(0, 0, 0);
   }
 
   animate(

@@ -53,7 +53,7 @@ const move = (
         targets: [x1Y1.position],
         z: [
           {
-            value: x1Y1.position.z - 0.2 * scale,
+            value: x1Y1.position.z - 2 * scale,
             duration: (1000 * speed) / 2,
             delay: 0,
           },

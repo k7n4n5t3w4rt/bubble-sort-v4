@@ -30,6 +30,7 @@ type Cube = {
 type Col = Array<Cube>;
 
 type Cubes = {
+  pixelGridGroup: Object,
   pixelGrid: Array<Col>,
   moving: boolean,
 };

@@ -13,8 +13,12 @@ export default (
   scale /*: number */,
   scene /*: Object */,
   reticleStuff /*: Object */,
-) /*: Array<Array<Object>> */ => {
-  const pixelGrid /*: Array<Col> */ = [];
+) /*: {pixelGridGroup:Object, pixelGridCubes:Array<Array<Object>>} */ => {
+  //create a group and add the two cubes
+  //These cubes can now be rotated / scaled etc as a group
+  const pixelGridGroup = new THREE.Group();
+
+  const pixelGridCubes /*: Array<Col> */ = [];
   let pos = 0;
   for (let i = 0; i < cols; i++) {
     const col /*: Col */ = [];
@@ -28,7 +32,11 @@ export default (
       const cube = new THREE.Mesh(geometry, material);
       // set the position of the cube based on where the reticle is
       cube.position.setFromMatrixPosition(reticleStuff.reticle.matrix);
-      cube.quaternion.setFromRotationMatrix(reticleStuff.reticle.matrix);
+      // cube.quaternion.setFromRotationMatrix(reticleStuff.reticle.matrix);
+      // select the Y world axis
+      const myAxis = new THREE.Vector3(0, 1, 0);
+      // rotate the mesh 45 on this axis
+      cube.rotateOnWorldAxis(myAxis, THREE.Math.degToRad(0));
 
       // cube.position.z = 0;
       cube.position.x = cube.position.x + i * scale;
@@ -38,10 +46,11 @@ export default (
       cube.bubble_value = cellColour;
       cube.pos = pos;
       pos++;
-      scene.add(cube);
+      pixelGridGroup.add(cube);
       col.push(cube);
     }
-    pixelGrid.push(col);
+    pixelGridCubes.push(col);
   }
-  return pixelGrid;
+  scene.add(pixelGridGroup);
+  return { pixelGridGroup, pixelGridCubes };
 };
