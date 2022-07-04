@@ -18,11 +18,16 @@ export default (
   // const { stats, scene, camera, renderer, reticleStuff, cubes } = sceneData;
 
   const reticleStuff = {};
+
+  // Set to active by default. It will be set to inactive
+  // when the first object is added to the scene
+  reticleStuff.active = true;
+
+  // Make the reticle object
   const geometry = new THREE.RingBufferGeometry(0.15, 0.2, 32).rotateX(
     -Math.PI / 2,
   );
   const material = new THREE.MeshBasicMaterial();
-
   reticleStuff.reticle = new THREE.Mesh(geometry, material);
 
   // we will calculate the position and rotation of this reticle every frame manually

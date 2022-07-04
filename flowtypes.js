@@ -40,6 +40,7 @@ type ReticleStuff = {
   localSpace?: Object,
   viewerSpace?: Object,
   hitTestSourceInitialized?: Object,
+  active: boolean,
 };
 
 type SceneData = {

@@ -18,7 +18,7 @@ export default (sceneData /*: SceneData */) /*: () => Promise<any>  */ => {
       const { stats, scene, camera, renderer, reticleStuff } = sceneData;
 
       // 2. get hit test results
-      if (reticleStuff.hitTestSourceInitialized) {
+      if (reticleStuff.hitTestSourceInitialized && reticleStuff.active) {
         // we get the hit test results for a particular frame
         const hitTestResults = frame.getHitTestResults(
           reticleStuff.hitTestSource,
@@ -36,6 +36,10 @@ export default (sceneData /*: SceneData */) /*: () => Promise<any>  */ => {
         } else {
           reticleStuff.reticle.visible = false;
         }
+      } else {
+        reticleStuff.reticle.visible = false;
+        reticleStuff.hitTestSourceInitialized = false;
+        reticleStuff.hitTestSource = null;
       }
       sceneData.stats.update();
       // cubes = move(cubes, speed, cols, rows);

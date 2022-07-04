@@ -95,6 +95,7 @@ export default (
       mesh.quaternion.setFromRotationMatrix(reticleStuff.reticle.matrix);
 
       scene.add(mesh);
+      reticleStuff.active = false;
     }
     // Build the grid of pixels
     // const cubes = {};
