@@ -38,10 +38,9 @@ export default (
       // rotate the mesh 45 on this axis
       cube.rotateOnWorldAxis(myAxis, THREE.Math.degToRad(0));
 
-      // cube.position.z = 0;
-      cube.position.x = cube.position.x + i * scale;
+      cube.position.z = cube.position.z - i * scale;
       cube.position.y = cube.position.y + j * scale;
-      cube.initial_pos_x = cube.position.x + i * scale;
+      cube.initial_pos_z = cube.position.z - i * scale;
       cube.initial_pos_y = cube.position.y + j * scale;
       cube.bubble_value = cellColour;
       cube.pos = pos;

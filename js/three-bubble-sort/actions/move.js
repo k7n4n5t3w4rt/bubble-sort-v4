@@ -18,61 +18,61 @@ const move = (
   //
   //		/js/three-bubble-sort/actions/pixelGrid.js (Line 34)
   //
-  let x1y1StartPos /*: Object */;
+  let z1y1StartPos /*: Object */;
   let pos1 /*: number */;
   let pos2 /*: number */;
-  let movingX1Y1 /*: boolean */ = true;
-  let movingX2Y2 /*: boolean */ = true;
-  let x1Y1 /*: Object */;
-  let x2Y2 /*: Object */;
+  let movingZ1Y1 /*: boolean */ = true;
+  let movingZ2Y2 /*: boolean */ = true;
+  let z1Y1 /*: Object */;
+  let z2Y2 /*: Object */;
 
-  let x1 = Math.floor(Math.random() * cols);
+  let z1 = Math.floor(Math.random() * cols);
   let y1 = Math.floor(Math.random() * rows);
-  let x2 = Math.floor(Math.random() * cols);
+  let z2 = Math.floor(Math.random() * cols);
   let y2 = Math.floor(Math.random() * rows);
-  x1Y1 = cubes.pixelGrid[x1][y1];
-  x2Y2 = cubes.pixelGrid[x2][y2];
+  z1Y1 = cubes.pixelGrid[z1][y1];
+  z2Y2 = cubes.pixelGrid[z2][y2];
 
-  console.log(`Trying [${x1}, ${y1}] and [${x2}, ${y2}]...`);
+  console.log(`Trying [${z1}, ${y1}] and [${z2}, ${y2}]...`);
 
-  if (cubes.moving === false && x1Y1.bubble_value > x2Y2.bubble_value) {
-    console.log(`[${x1}, ${y1}] bubble value IS > [${x2}, ${y2}]...`);
+  if (cubes.moving === false && z1Y1.bubble_value > z2Y2.bubble_value) {
+    console.log(`[${z1}, ${y1}] bubble value IS > [${z2}, ${y2}]...`);
 
-    if (cubes.moving === false && x1Y1.pos > x2Y2.pos) {
-      console.log(`[${x1}, ${y1}] pos IS > [${x2}, ${y2}]...`);
-      console.log(`Preparing to swap [${x1}, ${y1}] and [${x2}, ${y2}]...`);
+    if (cubes.moving === false && z1Y1.pos > z2Y2.pos) {
+      console.log(`[${z1}, ${y1}] pos IS > [${z2}, ${y2}]...`);
+      console.log(`Preparing to swap [${z1}, ${y1}] and [${z2}, ${y2}]...`);
 
-      x1y1StartPos = {
-        x: x1Y1.position.x,
-        y: x1Y1.position.y,
+      z1y1StartPos = {
+        z: z1Y1.position.z,
+        y: z1Y1.position.y,
       };
       cubes.moving = true;
 
-      // Move x1y1
+      // Move z1y1
       anime({
-        targets: [x1Y1.position],
-        z: [
+        targets: [z1Y1.position],
+        x: [
           {
-            value: x1Y1.position.z - 2 * scale,
+            value: z1Y1.position.x - 2 * scale,
             duration: (1000 * speed) / 2,
             delay: 0,
           },
           {
-            value: x1Y1.position.z,
+            value: z1Y1.position.x,
             duration: 1000 * speed,
             delay: 0,
           },
         ],
-        x: [
+        z: [
           {
-            value: x2Y2.position.x,
+            value: z2Y2.position.z,
             duration: 1000 * speed,
             delay: 0,
           },
         ],
         y: [
           {
-            value: x2Y2.position.y,
+            value: z2Y2.position.y,
             duration: 1000 * speed,
             delay: 0,
           },
@@ -81,40 +81,40 @@ const move = (
         easing: "easeInOutCirc",
         complete: function (anim) {
           //   completeLogEl.value = 'completed : ' + anim.completed;
-          // Move x1y1
-          movingX1Y1 = false;
-          if (movingX2Y2 === false) {
+          // Move z1y1
+          movingZ1Y1 = false;
+          if (movingZ2Y2 === false) {
             cubes.moving = false;
           }
           return cubes;
         },
       });
       anime({
-        targets: [x2Y2.position],
-        z: [
+        targets: [z2Y2.position],
+        x: [
           {
-            value: x2Y2.position.z + 2 * scale,
+            value: z2Y2.position.x + 2 * scale,
             duration: (1000 * speed) / 2,
             delay: 0,
           },
           {
-            value: x2Y2.position.z,
+            value: z2Y2.position.x,
             duration: 1000 * speed,
             delay: 0,
           },
         ],
-        x: [{ value: x1y1StartPos.x, duration: 1000 * speed, delay: 0 }],
-        y: [{ value: x1y1StartPos.y, duration: 1000 * speed, delay: 0 }],
+        z: [{ value: z1y1StartPos.z, duration: 1000 * speed, delay: 0 }],
+        y: [{ value: z1y1StartPos.y, duration: 1000 * speed, delay: 0 }],
         delay: 500,
         easing: "easeInOutCirc",
         complete: function (anim) {
           //   completeLogEl.value = 'completed : ' + anim.completed;
-          pos1 = x1Y1.pos;
-          pos2 = x2Y2.pos;
-          x1Y1.pos = pos2;
-          x2Y2.pos = pos1;
-          movingX2Y2 = false;
-          if (movingX1Y1 === false) {
+          pos1 = z1Y1.pos;
+          pos2 = z2Y2.pos;
+          z1Y1.pos = pos2;
+          z2Y2.pos = pos1;
+          movingZ2Y2 = false;
+          if (movingZ1Y1 === false) {
             cubes.moving = false;
           }
           return cubes;

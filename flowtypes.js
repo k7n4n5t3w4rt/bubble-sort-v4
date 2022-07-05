@@ -33,6 +33,7 @@ type Cubes = {
   pixelGridGroup: Object,
   pixelGrid: Array<Col>,
   moving: boolean,
+  active: boolean,
 };
 
 type ReticleStuff = {

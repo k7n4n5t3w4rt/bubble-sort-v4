@@ -86,23 +86,27 @@ export default (
     if (reticleStuff.reticle.visible) {
       reticleStuff.active = false;
     }
-    // Build the grid of pixels
-    const { pixelGridGroup, pixelGridCubes } = pixelGrid(
-      cols,
-      rows,
-      scale,
-      scene,
-      reticleStuff,
-    );
-    cubes.pixelGrid = pixelGridCubes;
-    cubes.pixelGridGroup = pixelGridGroup;
-    cubes.moving = false;
 
-    // const vector = new THREE.Vector3(); // create once and reuse it!
-    // camera.getWorldDirection(vector);
-    // const radians = Math.atan2(vector.x, vector.z);
-    // cubes.pixelGridGroup.rotateY(radians);
-    cubes.pixelGridGroup.lookAt(0, 0, 0);
+    if (cubes.active === undefined || cubes.active === false) {
+      // Build the grid of pixels
+      const { pixelGridGroup, pixelGridCubes } = pixelGrid(
+        cols,
+        rows,
+        scale,
+        scene,
+        reticleStuff,
+      );
+      cubes.pixelGrid = pixelGridCubes;
+      cubes.pixelGridGroup = pixelGridGroup;
+      cubes.moving = false;
+      cubes.active = true;
+
+      // const vector = new THREE.Vector3(); // create once and reuse it!
+      // camera.getWorldDirection(vector);
+      // const radians = Math.atan2(vector.x, vector.z);
+      // cubes.pixelGridGroup.rotateY(radians);
+      cubes.pixelGridGroup.lookAt(0, 0, 0);
+    }
   }
 
   animate(
