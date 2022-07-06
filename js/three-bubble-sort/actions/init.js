@@ -101,11 +101,16 @@ export default (
       cubes.moving = false;
       cubes.active = true;
 
-      // const vector = new THREE.Vector3(); // create once and reuse it!
-      // camera.getWorldDirection(vector);
-      // const radians = Math.atan2(vector.x, vector.z);
-      // cubes.pixelGridGroup.rotateY(radians);
-      cubes.pixelGridGroup.lookAt(0, 0, 0);
+      // Get the direction in which the camera is looking
+      const vector = new THREE.Vector3();
+      camera.getWorldDirection(vector);
+      const radians = Math.atan2(vector.x, vector.z);
+      // Rotate the group on the Y axis (around it's centre, always the 0,0,0 point)
+      cubes.pixelGridGroup.rotateY(radians);
+      // Last thing: set the position of the cube based on the location of  the reticle
+      pixelGridGroup.position.setFromMatrixPosition(
+        reticleStuff.reticle.matrix,
+      );
     }
   }
 
