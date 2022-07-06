@@ -30,18 +30,11 @@ export default (
         color: `rgb(${cellColour},${cellColour},${cellColour})`,
       });
       const cube = new THREE.Mesh(geometry, material);
-      // set the position of the cube based on where the reticle is
-      cube.position.setFromMatrixPosition(reticleStuff.reticle.matrix);
-      // cube.quaternion.setFromRotationMatrix(reticleStuff.reticle.matrix);
-      // select the Y world axis
-      const myAxis = new THREE.Vector3(0, 1, 0);
-      // rotate the mesh 45 on this axis
-      cube.rotateOnWorldAxis(myAxis, THREE.Math.degToRad(0));
 
-      cube.position.z = cube.position.z - i * scale;
-      cube.position.y = cube.position.y + j * scale;
-      cube.initial_pos_z = cube.position.z - i * scale;
-      cube.initial_pos_y = cube.position.y + j * scale;
+      cube.position.z = i * scale;
+      cube.position.y = j * scale;
+      cube.initial_pos_z = i * scale;
+      cube.initial_pos_y = j * scale;
       cube.bubble_value = cellColour;
       cube.pos = pos;
       pos++;
