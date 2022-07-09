@@ -21,19 +21,15 @@ type Position = {
 
 type Cube = {
   position: Position,
-  initial_pos_x: number,
-  initial_pos_y: number,
   bubble_value: number,
-  pos: number,
 };
-
-type Col = Array<Cube>;
 
 type Cubes = {
   pixelGridGroup: Object,
-  pixelGrid: Array<Col>,
+  pixelGrid: Array<Cube>,
   moving: boolean,
   active: boolean,
+  currentIndex: number,
 };
 
 type ReticleStuff = {

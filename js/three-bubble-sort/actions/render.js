@@ -8,6 +8,7 @@ import * as THREE from "../../../web_modules/three.js";
 // --------------------------------------------------
 import move from "./move.js";
 import initializeHitTestSource from "./initializeHitTestSource.js";
+import anime from "../../../web_modules/animejs.js";
 
 export default (
   sceneData /*: SceneData */,
@@ -57,8 +58,8 @@ export default (
         // reticleStuff.hitTestSource = null;
       }
 
-      if (cubes.pixelGrid !== undefined) {
-        move(cubes, speed, scale, cols, rows, reticleStuff);
+      if (cubes.pixelGrid !== undefined && cubes.active === true) {
+        move(cubes, speed, scale, anime);
       }
       sceneData.stats.update();
       renderer.render(scene, camera);

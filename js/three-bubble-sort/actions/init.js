@@ -44,6 +44,20 @@ export default (
   // https://threejs.org/docs/#api/en/lights/HemisphereLight
   const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
   light.position.set(0.5, 1, 0.25);
+  //   var light = new THREE.DirectionalLight(0xffffff);
+  //   light.position.set(0, 2, 2);
+  //   light.target.position.set(0, 0, 0);
+  //   light.castShadow = true;
+  //   light.shadowDarkness = 0.5;
+  //   light.shadowCameraVisible = true; // only for debugging
+  //   // these six values define the boundaries of the yellow box seen above
+  //   light.shadowCameraNear = 2;
+  //   light.shadowCameraFar = 5;
+  //   light.shadowCameraLeft = -0.5;
+  //   light.shadowCameraRight = 0.5;
+  //   light.shadowCameraTop = 0.5;
+  //   light.shadowCameraBottom = -0.5;
+
   scene.add(light);
   //   const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
   //   scene.add(ambientLight);
@@ -100,6 +114,9 @@ export default (
       cubes.pixelGridGroup = pixelGridGroup;
       cubes.moving = false;
       cubes.active = true;
+      cubes.currentIndex = 0;
+
+      // console.log("cubes = ", JSON.stringify(cubes));
 
       // Get the direction in which the camera is looking
       const vector = new THREE.Vector3();

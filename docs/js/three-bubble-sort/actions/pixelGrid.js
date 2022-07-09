@@ -13,16 +13,15 @@ export default (
   scale /*: number */,
   scene /*: Object */,
   reticleStuff /*: Object */,
-) /*: {pixelGridGroup:Object, pixelGridCubes:Array<Array<Object>>} */ => {
+) /*: {pixelGridGroup:Object, pixelGridCubes:Array<Cube>} */ => {
   //create a group and add the two cubes
   //These cubes can now be rotated / scaled etc as a group
   const pixelGridGroup = new THREE.Group();
 
-  const pixelGridCubes /*: Array<Col> */ = [];
+  const pixelGridCubes /*: Array<Cube> */ = [];
   let pos = 0;
-  for (let i = 0; i < cols; i++) {
-    const col /*: Col */ = [];
-    for (let j = 0; j < rows; j++) {
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
       const cellColour = 255 - Math.ceil(255 * Math.random());
       const geometry = new THREE.BoxGeometry(1 * scale, 1 * scale, 1 * scale);
 
@@ -39,9 +38,8 @@ export default (
       cube.pos = pos;
       pos++;
       pixelGridGroup.add(cube);
-      col.push(cube);
+      pixelGridCubes.push(cube);
     }
-    pixelGridCubes.push(col);
   }
   scene.add(pixelGridGroup);
   return { pixelGridGroup, pixelGridCubes };

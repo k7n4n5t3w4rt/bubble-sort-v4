@@ -100,6 +100,7 @@ export default (
       cubes.pixelGridGroup = pixelGridGroup;
       cubes.moving = false;
       cubes.active = true;
+      cubes.currentIndex = 0;
 
       // Get the direction in which the camera is looking
       const vector = new THREE.Vector3();
