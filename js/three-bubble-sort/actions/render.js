@@ -13,7 +13,7 @@ import anime from "../../../web_modules/animejs.js";
 export default (
   sceneData /*: SceneData */,
   speed /*: number */,
-  scale /*: number */,
+  scaleZ /*: number */,
   cols /*: number */,
   rows /*: number */,
 ) /*: () => Promise<any>  */ => {
@@ -59,7 +59,7 @@ export default (
       }
 
       if (cubes.pixelGrid !== undefined && cubes.active === true) {
-        move(cubes, speed, scale, anime);
+        move(cubes, speed, scaleZ, anime);
       }
       sceneData.stats.update();
       renderer.render(scene, camera);

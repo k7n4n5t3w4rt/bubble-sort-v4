@@ -8,7 +8,7 @@ test("Cache | Clearing the cache", () /*: void */ => {
   should(staticCache.clearCache()).be.exactly(true);
 });
 
-test("Cache | Writing to and reading from /index.html", () /*: boolean */ => {
+test("Cache | Writing to /index.html", () /*: boolean */ => {
   const cachedFilePath /*: string */ = "/";
 
   return should(
@@ -16,7 +16,7 @@ test("Cache | Writing to and reading from /index.html", () /*: boolean */ => {
   ).be.exactly(true);
 });
 
-test("Cache | Writing to and reading from /index.html", () /*: boolean */ => {
+test("Cache | Reading from /index.html", () /*: boolean */ => {
   const cachedFilePath /*: string */ = "/";
 
   if (

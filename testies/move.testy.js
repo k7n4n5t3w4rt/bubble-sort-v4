@@ -13,10 +13,10 @@ test(
   "Move | Returns the cubes array unaffected if it is already in order",
   () /*: void */ => {
     const speed = 0.1;
-    const scale = 1;
+    const scaleZ = 1;
     let testCubes = cubes1;
     for (let i = 0; i < 12; i++) {
-      testCubes = move(testCubes, speed, scale, anime);
+      testCubes = move(testCubes, speed, scaleZ, anime);
     }
     should(JSON.stringify(testCubes)).be.exactly(JSON.stringify(cubesOrdered));
   },
@@ -27,10 +27,10 @@ test(
   "Move | Returns the cubes array in order  if the first two items passed in are out of order",
   () /*: void */ => {
     const speed = 0.1;
-    const scale = 1;
+    const scaleZ = 1;
     let testCubes = cubes2;
     for (let i = 0; i < 12; i++) {
-      testCubes = move(testCubes, speed, scale, anime);
+      testCubes = move(testCubes, speed, scaleZ, anime);
     }
     should(JSON.stringify(testCubes)).be.exactly(JSON.stringify(cubesOrdered));
   },
@@ -39,10 +39,10 @@ test(
 
 test("Move | Returns the cubes array in order  if the items passed in are in reverse order", () /*: void */ => {
   const speed = 0.1;
-  const scale = 1;
+  const scaleZ = 1;
   let testCubes = cubes3;
   for (let i = 0; i < 12; i++) {
-    testCubes = move(testCubes, speed, scale, anime);
+    testCubes = move(testCubes, speed, scaleZ, anime);
   }
   should(JSON.stringify(testCubes)).be.exactly(JSON.stringify(cubesOrdered));
 });

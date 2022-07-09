@@ -18,7 +18,7 @@ export default (
   cols /*: number */,
   rows /*: number */,
   speed /*: number */,
-  scale /*: number */,
+  scaleZ /*: number */,
 ) /*: void */ => {
   //
   let sceneData /*: SceneData */ = {};
@@ -38,8 +38,8 @@ export default (
     50,
   );
   camera.position.z = 1;
-  camera.position.y = Math.abs(parseInt(rows / 2)) * scale;
-  camera.position.x = Math.abs(parseInt(cols / 2)) * scale;
+  camera.position.y = Math.abs(parseInt(rows / 2)) * scaleZ;
+  camera.position.x = Math.abs(parseInt(cols / 2)) * scaleZ;
 
   // https://threejs.org/docs/#api/en/lights/HemisphereLight
   const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
@@ -106,7 +106,7 @@ export default (
       const { pixelGridGroup, pixelGridCubes } = pixelGrid(
         cols,
         rows,
-        scale,
+        scaleZ,
         scene,
         reticleStuff,
       );
@@ -134,7 +134,7 @@ export default (
   animate(
     { stats, scene, camera, renderer, reticleStuff, cubes },
     speed,
-    scale,
+    scaleZ,
     cols,
     rows,
   );

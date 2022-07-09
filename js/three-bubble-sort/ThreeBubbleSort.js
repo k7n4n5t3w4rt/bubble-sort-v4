@@ -24,19 +24,21 @@ type Props = {
 	cols: string,
 	rows: string,
 	speed: string,
-	scale: string,
+	scalez: string,
+	scaley: string,
 }
 */
 export default (props /*: Props */) /*: string */ => {
   const cols = Math.abs(parseInt(props.cols) || 5);
   const rows = Math.abs(parseInt(props.rows) || 4);
   const speed = Math.abs(parseFloat(props.speed) || 1);
-  const scale = Math.abs(parseFloat(props.scale) || 0.2);
+  const scaleZ = Math.abs(parseFloat(props.scalez) || 0.2);
+  const scaleY = Math.abs(parseFloat(props.scaley) || 0.2);
 
   useEffect(() => {
     setupMobileDebug();
     let stats = createStats();
-    init(cols, rows, speed, scale);
+    init(cols, rows, speed, scaleZ);
   });
 
   return html`

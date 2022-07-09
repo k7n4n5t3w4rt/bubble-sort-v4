@@ -3,7 +3,7 @@
 const move = (
   cubes /*: Cubes */,
   speed /*: number */,
-  scale /*: number */,
+  scaleZ /*: number */,
   anime /*: function */,
 ) /*: Cubes */ => {
   // NOTE:
@@ -31,22 +31,22 @@ const move = (
       cubes.currentIndex = 0;
       return cubes;
     }
-    console.log(`Trying cubes[${currentIndex}] and cubes[${nextIndex}]...`);
+    // console.log(`Trying cubes[${currentIndex}] and cubes[${nextIndex}]...`);
 
-    console.log(
-      `Comparing cubes[${currentIndex}] bubble value (${cube1.bubble_value}) with  cubes[${nextIndex}] bubble value (${cube2.bubble_value})`,
-    );
+    // console.log(
+    //   `Comparing cubes[${currentIndex}] bubble value (${cube1.bubble_value}) with  cubes[${nextIndex}] bubble value (${cube2.bubble_value})`,
+    // );
 
     if (cube1.bubble_value > cube2.bubble_value) {
-      console.log(
-        `cubes[${currentIndex}] bubble value (${cube1.bubble_value}) > cubes[${nextIndex}] bubble value (${cube2.bubble_value})`,
-      );
+      //   console.log(
+      //     `cubes[${currentIndex}] bubble value (${cube1.bubble_value}) > cubes[${nextIndex}] bubble value (${cube2.bubble_value})`,
+      //   );
 
-      console.log(`cubes.moving === `, cubes.moving);
+      //   console.log(`cubes.moving === `, cubes.moving);
       if (cubes.moving === false) {
-        console.log(
-          `Preparing to swap cubes[${currentIndex}]and cubes[${nextIndex}]...`,
-        );
+        // console.log(
+        //   `Preparing to swap cubes[${currentIndex}]and cubes[${nextIndex}]...`,
+        // );
 
         const cube1StartPos = {
           z: cube1.position.z,
@@ -61,7 +61,7 @@ const move = (
           targets: [cube1.position],
           x: [
             {
-              value: cube1.position.x - 2 * scale,
+              value: cube1.position.x - 2 * scaleZ,
               duration: (1000 * speed) / 2,
               delay: 0,
             },
@@ -104,7 +104,7 @@ const move = (
           targets: [cube2.position],
           x: [
             {
-              value: cube2.position.x + 2 * scale,
+              value: cube2.position.x + 2 * scaleZ,
               duration: (1000 * speed) / 2,
               delay: 0,
             },
