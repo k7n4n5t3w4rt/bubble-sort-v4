@@ -7,6 +7,8 @@ import render from "./render.js";
 const animate = (
   sceneData /*: SceneData */,
   speed /*: number */,
+  scaleX /*: number */,
+  scaleY /*: number */,
   scaleZ /*: number */,
   cols /*: number */,
   rows /*: number */,
@@ -15,7 +17,7 @@ const animate = (
   // const { stats, scene, camera, renderer, reticleStuff } = sceneData;
 
   sceneData.renderer.setAnimationLoop(
-    render(sceneData, speed, scaleZ, cols, rows),
+    render(sceneData, speed, scaleX, scaleY, scaleZ, cols, rows),
   );
   return { stats, scene, camera, renderer, reticleStuff, cubes };
 };

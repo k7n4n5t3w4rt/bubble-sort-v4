@@ -10,6 +10,8 @@ import * as THREE from "../../../web_modules/three.js";
 export default (
   cols /*: number */,
   rows /*: number */,
+  scaleX /*: number */,
+  scaleY /*: number */,
   scaleZ /*: number */,
   scene /*: Object */,
   reticleStuff /*: Object */,
@@ -23,8 +25,8 @@ export default (
     for (let j = 0; j < cols; j++) {
       const cellColour = 255 - Math.ceil(255 * Math.random());
       const geometry = new THREE.BoxGeometry(
-        1 * scaleZ,
-        1 * scaleZ,
+        1 * scaleX,
+        1 * scaleY,
         1 * scaleZ,
       );
 
@@ -34,7 +36,7 @@ export default (
       const cube = new THREE.Mesh(geometry, material);
 
       cube.position.z = j * scaleZ;
-      cube.position.y = i * scaleZ;
+      cube.position.y = i * scaleY;
       cube.bubble_value = cellColour;
       cube.castShadow = true;
       pixelGridGroup.add(cube);

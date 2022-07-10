@@ -9,8 +9,8 @@ import * as THREE from "../../../web_modules/three.js";
 import { ARButton } from "../../vendor/ARButton.js";
 import { OrbitControls } from "../../../web_modules/three/examples/jsm/controls/OrbitControls.js";
 import createStats from "../../create_stats.js";
-import pixelGrid from "./pixelGrid.js";
 import onWindowResize from "../calculations/onWindowResize.js";
+import onSelectBuildPixelGrid from "./onSelectBuildPixelGrid.js";
 import animate from "./animate.js";
 import addReticleToScene from "../calculations/addReticleToScene.js";
 
@@ -18,10 +18,19 @@ export default (
   cols /*: number */,
   rows /*: number */,
   speed /*: number */,
+  scaleX /*: number */,
+  scaleY /*: number */,
   scaleZ /*: number */,
 ) /*: void */ => {
-  //
+  // Initialise some objects for the global state
   let sceneData /*: SceneData */ = {};
+  const cubes /*: Cubes */ = {
+    pixelGridGroup: {},
+    pixelGrid: [],
+    moving: false,
+    active: false,
+    currentIndex: 0,
+  };
 
   // The stats display for AR
   const stats = createStats();
@@ -38,25 +47,12 @@ export default (
     50,
   );
   camera.position.z = 1;
-  camera.position.y = Math.abs(parseInt(rows / 2)) * scaleZ;
-  camera.position.x = Math.abs(parseInt(cols / 2)) * scaleZ;
+  camera.position.y = Math.abs(parseInt(rows / 2)) * scaleY;
+  camera.position.x = Math.abs(parseInt(cols / 2)) * scaleX;
 
   // https://threejs.org/docs/#api/en/lights/HemisphereLight
   const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
   light.position.set(0.5, 1, 0.25);
-  //   var light = new THREE.DirectionalLight(0xffffff);
-  //   light.position.set(0, 2, 2);
-  //   light.target.position.set(0, 0, 0);
-  //   light.castShadow = true;
-  //   light.shadowDarkness = 0.5;
-  //   light.shadowCameraVisible = true; // only for debugging
-  //   // these six values define the boundaries of the yellow box seen above
-  //   light.shadowCameraNear = 2;
-  //   light.shadowCameraFar = 5;
-  //   light.shadowCameraLeft = -0.5;
-  //   light.shadowCameraRight = 0.5;
-  //   light.shadowCameraTop = 0.5;
-  //   light.shadowCameraBottom = -0.5;
 
   scene.add(light);
   //   const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
@@ -75,7 +71,22 @@ export default (
   const reticleStuff = addReticleToScene({ stats, scene, camera, renderer });
 
   const controller = renderer.xr.getController(0);
-  controller.addEventListener("select", onSelect);
+  // On select (tap in AR mode), build the pixel grid and start
+  // calling the move() function on each render to animate the pixels
+  controller.addEventListener(
+    "select",
+    onSelectBuildPixelGrid(
+      reticleStuff,
+      cubes,
+      cols,
+      rows,
+      scaleX,
+      scaleY,
+      scaleZ,
+      scene,
+      camera,
+    ),
+  );
   scene.add(controller);
 
   //   // https://threejs.org/docs/#examples/en/controls/OrbitControls
@@ -94,46 +105,11 @@ export default (
   // $FlowFixMe
   document.body.appendChild(button);
 
-  const cubes = {};
-
-  function onSelect() {
-    if (reticleStuff.reticle.visible) {
-      reticleStuff.active = false;
-    }
-
-    if (cubes.active === undefined || cubes.active === false) {
-      // Build the grid of pixels
-      const { pixelGridGroup, pixelGridCubes } = pixelGrid(
-        cols,
-        rows,
-        scaleZ,
-        scene,
-        reticleStuff,
-      );
-      cubes.pixelGrid = pixelGridCubes;
-      cubes.pixelGridGroup = pixelGridGroup;
-      cubes.moving = false;
-      cubes.active = true;
-      cubes.currentIndex = 0;
-
-      // console.log("cubes = ", JSON.stringify(cubes));
-
-      // Get the direction in which the camera is looking
-      const vector = new THREE.Vector3();
-      camera.getWorldDirection(vector);
-      const radians = Math.atan2(vector.x, vector.z);
-      // Rotate the group on the Y axis (around it's centre, always the 0,0,0 point)
-      cubes.pixelGridGroup.rotateY(radians);
-      // Last thing: set the position of the cube based on the location of  the reticle
-      pixelGridGroup.position.setFromMatrixPosition(
-        reticleStuff.reticle.matrix,
-      );
-    }
-  }
-
   animate(
     { stats, scene, camera, renderer, reticleStuff, cubes },
     speed,
+    scaleX,
+    scaleY,
     scaleZ,
     cols,
     rows,

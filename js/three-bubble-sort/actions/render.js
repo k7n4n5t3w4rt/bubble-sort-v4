@@ -13,6 +13,8 @@ import anime from "../../../web_modules/animejs.js";
 export default (
   sceneData /*: SceneData */,
   speed /*: number */,
+  scaleX /*: number */,
+  scaleY /*: number */,
   scaleZ /*: number */,
   cols /*: number */,
   rows /*: number */,
