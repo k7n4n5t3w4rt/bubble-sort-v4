@@ -14,10 +14,37 @@ import { html } from "../../web_modules/htm/preact.js";
 // --------------------------------------------------
 // HELPERS
 // --------------------------------------------------
-import { ARButton } from "../vendor/ARButton.js";
 import setupMobileDebug from "../setup_mobile_debug.js";
 import createStats from "../create_stats.js";
 import init from "./actions/init.js";
+
+import {
+  rawStyles,
+  createStyles,
+  setSeed,
+} from "../../web_modules/simplestyle-js.js";
+
+const seed /*: number */ = parseInt(
+  "bubblesort".split("").reduce(
+    (acc /*: string */, letter /*: string */) /*: string */ => {
+      const letterCode = letter.toLowerCase().charCodeAt(0) - 97 + 1;
+      return acc + letterCode.toString();
+    },
+    "",
+  ),
+);
+setSeed(seed);
+
+const [styles] = createStyles({
+  bubbleSort: {
+    width: "100%",
+    height: "100%",
+    backgroundImage: "url(/img/bg1.png)",
+    backgroundClip: "border-box",
+    backgroundSize: "cover",
+    backgroundRepeat: "none",
+  },
+});
 
 /*::
 type Props = {
@@ -45,7 +72,7 @@ export default (props /*: Props */) /*: string */ => {
   });
 
   return html`
-    <div>
+    <div className="${styles.bubbleSort}">
       <div id="console-ui"></div>
     </div>
   `;

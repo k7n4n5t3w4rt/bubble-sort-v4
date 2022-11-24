@@ -1,5 +1,11 @@
-#root,
-.bubble-sort {
-  width: 100%;
-  height: 100%;
+/* body {
+	font-family: "Poppins","Helvetica","Arial","Lucida",sans-serif;
+	font-size: .9rem;
+} */
+
+html,
+body,
+#goodthing
+{
+	height: 100%;
 }

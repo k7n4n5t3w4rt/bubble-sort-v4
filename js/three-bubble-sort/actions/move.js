@@ -1,4 +1,9 @@
 // @flow
+// --------------------------------------------------
+// HELPERS
+// --------------------------------------------------
+import cube1AnimeOptions from "./cube1AnimeOptions.js";
+import cube2AnimeOptions from "./cube2AnimeOptions.js";
 
 const move = (
   cubes /*: Cubes */,
@@ -88,7 +93,6 @@ const move = (
           delay: 500,
           easing: "easeInOutCirc",
           complete: function (anim) {
-            //   completeLogEl.value = 'completed : ' + anim.completed;
             // Move cube1
             movingCube1 = false;
             if (movingCube2 === false) {
@@ -119,7 +123,7 @@ const move = (
           delay: 500,
           easing: "easeInOutCirc",
           complete: function (anim) {
-            //   completeLogEl.value = 'completed : ' + anim.completed;
+            // Move cube2
             movingCube2 = false;
             if (movingCube1 === false) {
               cubes.moving = false;

@@ -86,7 +86,7 @@ declare module "../../web_modules/preact/hooks.js" {
   declare module.exports: any;
 }
 
-declare module "../web_modules/simplestyle-js.js" {
+declare module "../../web_modules/simplestyle-js.js" {
   declare module.exports: any;
 }
 
