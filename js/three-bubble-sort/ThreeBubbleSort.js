@@ -9,31 +9,31 @@ import { TGALoader } from "../../web_modules/three/examples/jsm/loaders/TGALoade
 // --------------------------------------------------
 // PREACT
 // --------------------------------------------------
-import { useEffect, useState } from "../../web_modules/preact/hooks.js";
+import {
+  useEffect,
+  useState,
+  useReducer,
+} from "../../web_modules/preact/hooks.js";
 import { html } from "../../web_modules/htm/preact.js";
+// --------------------------------------------------
+// COMPONENTS
+// --------------------------------------------------
+import Params from "./ThreeBubbleSortParams.js";
 // --------------------------------------------------
 // HELPERS
 // --------------------------------------------------
+import AppReducer from "../appReducer.js";
 import setupMobileDebug from "../setup_mobile_debug.js";
 import createStats from "../create_stats.js";
 import init from "./actions/init.js";
-
+import seedString from "../simple_css_seed.js";
 import {
   rawStyles,
   createStyles,
   setSeed,
 } from "../../web_modules/simplestyle-js.js";
 
-const seed /*: number */ = parseInt(
-  "bubblesort".split("").reduce(
-    (acc /*: string */, letter /*: string */) /*: string */ => {
-      const letterCode = letter.toLowerCase().charCodeAt(0) - 97 + 1;
-      return acc + letterCode.toString();
-    },
-    "",
-  ),
-);
-setSeed(seed);
+setSeed(seedString("bubblesort"));
 
 const [styles] = createStyles({
   bubbleSort: {
@@ -65,14 +65,39 @@ export default (props /*: Props */) /*: string */ => {
   const scaleY = Math.abs(Math.floor(parseFloat(props.scaley)) / 100 || 0.01);
   const scaleZ = Math.abs(Math.floor(parseFloat(props.scalez)) / 100 || 0.01);
 
+  const [state /*: AppState */, dispatch] = useReducer(AppReducer, {
+    cols,
+    rows,
+    speed,
+    scaleX,
+    scaleY,
+    scaleZ,
+  });
+
   useEffect(() => {
     setupMobileDebug();
     let stats = createStats();
-    init(cols, rows, speed, scaleX, scaleY, scaleZ);
+    init(
+      state.cols,
+      state.rows,
+      state.speed,
+      state.scaleX,
+      state.scaleY,
+      state.scaleZ,
+    );
   });
 
   return html`
     <div className="${styles.bubbleSort}">
+      <${Params}
+        cols="${state.cols}"
+        rows="${state.rows}"
+        speed="${state.speed}"
+        scaleX="${state.scaleX}"
+        scaleY="${state.scaleY}"
+        scaleZ="${state.scaleZ}"
+        dispatch="${dispatch}"
+      />
       <div id="console-ui"></div>
     </div>
   `;
