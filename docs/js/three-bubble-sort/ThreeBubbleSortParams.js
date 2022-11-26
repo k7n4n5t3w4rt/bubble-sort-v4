@@ -131,7 +131,6 @@ export default (props /*: Props */) /*: string */ => {
           />
         </div>
       </fieldset>
-      <div id="param-cols"></div>
     </div>
   `;
 };
