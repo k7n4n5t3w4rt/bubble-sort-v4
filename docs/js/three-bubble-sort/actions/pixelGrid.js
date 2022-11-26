@@ -25,9 +25,9 @@ export default (
     for (let j = 0; j < cols; j++) {
       const cellColour = 255 - Math.ceil(255 * Math.random());
       const geometry = new THREE.BoxGeometry(
-        1 * scaleX,
-        1 * scaleY,
-        1 * scaleZ,
+        scaleX / 100,
+        scaleY / 100,
+        scaleZ / 100,
       );
 
       const material = new THREE.MeshBasicMaterial({

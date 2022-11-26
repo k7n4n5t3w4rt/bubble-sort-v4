@@ -62,9 +62,9 @@ export default (props /*: Props */) /*: string */ => {
   const cols = Math.abs(parseInt(props.cols) || 5);
   const rows = Math.abs(parseInt(props.rows) || 4);
   const speed = Math.abs(parseFloat(props.speed) || 1);
-  const scaleX = Math.abs(Math.floor(parseFloat(props.scalex)) / 100 || 0.01);
-  const scaleY = Math.abs(Math.floor(parseFloat(props.scaley)) / 100 || 0.01);
-  const scaleZ = Math.abs(Math.floor(parseFloat(props.scalez)) / 100 || 0.01);
+  const scaleX = Math.abs(Math.floor(parseFloat(props.scalex)) || 1);
+  const scaleY = Math.abs(Math.floor(parseFloat(props.scaley)) || 1);
+  const scaleZ = Math.abs(Math.floor(parseFloat(props.scalez)) || 1);
 
   const [state /*: AppState */, dispatch] = useReducer(AppReducer, {
     cols,
