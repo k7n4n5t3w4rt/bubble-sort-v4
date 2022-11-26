@@ -35,8 +35,10 @@ export default (
   // The stats display for AR
   const stats = createStats();
   const container = document.createElement("div");
+  const goodthing = document.getElementById("goodthing");
+  // document.body.appendChild(container);
   // $FlowFixMe - Flow doesn't know about the DOM
-  document.body.appendChild(container);
+  goodthing.appendChild(container);
 
   // Make the scene, camera, geometry, etc.
   const scene = new THREE.Scene();
