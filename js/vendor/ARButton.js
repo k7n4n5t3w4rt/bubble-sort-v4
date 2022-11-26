@@ -59,7 +59,7 @@ class ARButton {
         button.textContent = "START AR";
         // THIS DOESN'T WORK IN [P]REACT
         // sessionInit.domOverlay.root.style.display = "none";
-        sessionInit.domOverlay.root.firstElementChild.style.display = "none";
+        // sessionInit.domOverlay.root.firstElementChild.style.display = "none";
 
         currentSession = null;
       }
@@ -124,7 +124,7 @@ class ARButton {
       element.style.textAlign = "center";
       element.style.opacity = "0.5";
       element.style.outline = "none";
-      element.style.zIndex = "999";
+      element.style.zIndex = "10000";
     }
 
     if ("xr" in navigator) {
