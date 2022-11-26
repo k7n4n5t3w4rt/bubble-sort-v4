@@ -5,10 +5,10 @@ export default (
   action /*: { type: string, payload: Object } */,
 ) /*: {} */ => {
   switch (action.type) {
-    case "CHANGE_COLS":
+    case "CHANGE_PARAM":
       return {
         ...state,
-        cols: action.payload,
+        [action.payload.param]: action.payload.value,
       };
 
     default:

@@ -68,12 +68,15 @@ export default (props /*: Props */) /*: string */ => {
 
   useEffect(() => {});
 
-  const changeCols = (dispatch /*: function */) /*: function */ => (
+  const changeCols = (
+    dispatch /*: function */,
+    param /*: string */,
+  ) /*: function */ => (
     e /*: SyntheticInputEvent<HTMLInputElement> */,
   ) /*: void */ => {
     dispatch({
-      type: "CHANGE_COLS",
-      payload: e.target.value,
+      type: "CHANGE_PARAM",
+      payload: { param, value: e.target.value },
     });
   };
 
@@ -87,12 +90,18 @@ export default (props /*: Props */) /*: string */ => {
             id="cols"
             name="cols"
             value="${cols.toString()}"
-            onChange=${changeCols(dispatch)}
+            onChange=${changeCols(dispatch, "cols")}
           />
         </div>
         <div>
           <label for="rows">Rows:</label>
-          <input type="text" id="rows" name="rows" value="${rows.toString()}" />
+          <input
+            type="text"
+            id="rows"
+            name="rows"
+            onChange=${changeCols(dispatch, "rows")}
+            value="${rows.toString()}"
+          />
         </div>
         <div>
           <label for="rows">Speed:</label>
@@ -100,6 +109,7 @@ export default (props /*: Props */) /*: string */ => {
             type="text"
             id="speed"
             name="speed"
+            onChange=${changeCols(dispatch, "rows")}
             value="${speed.toString()}"
           />
         </div>
@@ -109,7 +119,8 @@ export default (props /*: Props */) /*: string */ => {
             type="text"
             id="scaleX"
             name="scaleX"
-            value="${(scaleX * 100).toString()}"
+            onChange=${changeCols(dispatch, "scaleX")}
+            value="${scaleX.toString()}"
           />
         </div>
         <div>
@@ -118,7 +129,8 @@ export default (props /*: Props */) /*: string */ => {
             type="text"
             id="scaleY"
             name="scaleY"
-            value="${(scaleY * 100).toString()}"
+            onChange=${changeCols(dispatch, "scaleY")}
+            value="${scaleY.toString()}"
           />
         </div>
         <div>
@@ -127,7 +139,8 @@ export default (props /*: Props */) /*: string */ => {
             type="text"
             id="scaleZ"
             name="scaleZ"
-            value="${(scaleZ * 100).toString()}"
+            onChange=${changeCols(dispatch, "scaleZ")}
+            value="${scaleZ.toString()}"
           />
         </div>
       </fieldset>
