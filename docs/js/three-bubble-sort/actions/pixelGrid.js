@@ -24,19 +24,15 @@ export default (
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
       const cellColour = 255 - Math.ceil(255 * Math.random());
-      const geometry = new THREE.BoxGeometry(
-        scaleX / 100,
-        scaleY / 100,
-        scaleZ / 100,
-      );
+      const geometry = new THREE.BoxGeometry(scaleX, scaleY, scaleZ);
 
       const material = new THREE.MeshBasicMaterial({
         color: `rgb(${cellColour},${cellColour},${cellColour})`,
       });
       const cube = new THREE.Mesh(geometry, material);
 
-      cube.position.z = j * (scaleZ / 100);
-      cube.position.y = i * (scaleY / 100);
+      cube.position.z = j * scaleZ;
+      cube.position.y = i * scaleY;
       cube.bubble_value = cellColour;
       cube.castShadow = true;
       pixelGridGroup.add(cube);
