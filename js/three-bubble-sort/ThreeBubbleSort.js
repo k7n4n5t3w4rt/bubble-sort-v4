@@ -75,7 +75,7 @@ export default (props /*: Props */) /*: string */ => {
   });
 
   useEffect(() => {
-    setupMobileDebug();
+    //setupMobileDebug();
     let stats = createStats();
     init(
       state.cols,
@@ -89,6 +89,7 @@ export default (props /*: Props */) /*: string */ => {
 
   return html`
     <div className="${styles.bubbleSort}">
+      <div id="console-ui"></div>
       <${Params}
         cols="${state.cols}"
         rows="${state.rows}"
@@ -98,7 +99,6 @@ export default (props /*: Props */) /*: string */ => {
         scaleZ="${state.scaleZ}"
         dispatch="${dispatch}"
       />
-      <div id="console-ui"></div>
     </div>
   `;
 };
