@@ -16,9 +16,9 @@ export default (
   scene /*: Object */,
   reticleStuff /*: Object */,
 ) /*: {pixelGridGroup:Object, pixelGridCubes:Array<Cube>} */ => {
-  scaleX /*: number */ = scaleXm / 10;
-  scaleY /*: number */ = scaleYm / 10;
-  scaleZ /*: number */ = scaleZm / 10;
+  const scaleX /*: number */ = scaleXm / 100;
+  const scaleY /*: number */ = scaleYm / 100;
+  const scaleZ /*: number */ = scaleZm / 100;
   //create a group and add the two cubes
   //These cubes can now be rotated / scaled etc as a group
   const pixelGridGroup = new THREE.Group();

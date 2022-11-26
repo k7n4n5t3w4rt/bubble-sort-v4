@@ -13,13 +13,16 @@ import anime from "../../../web_modules/animejs.js";
 export default (
   sceneData /*: SceneData */,
   speed /*: number */,
-  scaleX /*: number */,
-  scaleY /*: number */,
-  scaleZ /*: number */,
+  scaleXm /*: number */,
+  scaleYm /*: number */,
+  scaleZm /*: number */,
   cols /*: number */,
   rows /*: number */,
 ) /*: () => Promise<any>  */ => {
   return async (timestamp, frame) /*: Promise<any> */ => {
+    const scaleX /*: number */ = scaleXm / 100;
+    const scaleY /*: number */ = scaleYm / 100;
+    const scaleZ /*: number */ = scaleZm / 100;
     if (frame) {
       // 1. create a hit test source once and keep it for all the frames
       // this gets called only once

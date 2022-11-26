@@ -41,7 +41,7 @@
     "cloudrun:deploy": "gcloud run deploy --image gcr.io/helpful-emitter-147506/benkobot-frontend --platform managed",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "deploy:setup": "npm run generate && npm run github-pages",
+    "deploy": "npm run generate && npm run github-pages && git push origin master",
     "docker:build": "docker build -t benkobot-frontend .",
     "docker:clean:containers": "docker rm -f $(docker ps -a -q)",
     "docker:clean:images": "docker rmi -f $(docker images -a -q)",
