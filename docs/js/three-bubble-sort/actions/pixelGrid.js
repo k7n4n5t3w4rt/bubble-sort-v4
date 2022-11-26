@@ -35,8 +35,8 @@ export default (
       });
       const cube = new THREE.Mesh(geometry, material);
 
-      cube.position.z = j * scaleZ;
-      cube.position.y = i * scaleY;
+      cube.position.z = j * (scaleZ / 100);
+      cube.position.y = i * (scaleY / 100);
       cube.bubble_value = cellColour;
       cube.castShadow = true;
       pixelGridGroup.add(cube);
