@@ -1,5 +1,9 @@
 class ARButton {
   static createButton(renderer, sessionInit = {}) {
+    const existingButton = document.getElementById("ARButton");
+    if (existingButton !== null) {
+      existingButton.remove();
+    }
     const button = document.createElement("button");
 
     function showStartAR(/*device*/) {
