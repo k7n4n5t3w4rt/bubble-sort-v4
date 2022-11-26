@@ -10,12 +10,15 @@ import * as THREE from "../../../web_modules/three.js";
 export default (
   cols /*: number */,
   rows /*: number */,
-  scaleX /*: number */,
-  scaleY /*: number */,
-  scaleZ /*: number */,
+  scaleXm /*: number */,
+  scaleYm /*: number */,
+  scaleZm /*: number */,
   scene /*: Object */,
   reticleStuff /*: Object */,
 ) /*: {pixelGridGroup:Object, pixelGridCubes:Array<Cube>} */ => {
+  scaleX /*: number */ = scaleXm / 10;
+  scaleY /*: number */ = scaleYm / 10;
+  scaleZ /*: number */ = scaleZm / 10;
   //create a group and add the two cubes
   //These cubes can now be rotated / scaled etc as a group
   const pixelGridGroup = new THREE.Group();
