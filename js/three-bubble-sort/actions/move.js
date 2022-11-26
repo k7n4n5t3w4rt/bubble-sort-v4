@@ -66,7 +66,7 @@ const move = (
           targets: [cube1.position],
           x: [
             {
-              value: cube1.position.x - 2 * scaleZ,
+              value: cube1.position.x - 2 * (scaleZ / 10),
               duration: (1000 * speed) / 2,
               delay: 0,
             },
@@ -108,7 +108,7 @@ const move = (
           targets: [cube2.position],
           x: [
             {
-              value: cube2.position.x + 2 * scaleZ,
+              value: cube2.position.x + 2 * (scaleZ / 10),
               duration: (1000 * speed) / 2,
               delay: 0,
             },
