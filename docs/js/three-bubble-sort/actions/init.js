@@ -6,7 +6,7 @@ import * as THREE from "../../../web_modules/three.js";
 // --------------------------------------------------
 // HELPERS
 // --------------------------------------------------
-import { ARButton } from "../../vendor/ARButton.js";
+import ARButton from "../../vendor/ARButton.js";
 import { OrbitControls } from "../../../web_modules/three/examples/jsm/controls/OrbitControls.js";
 import createStats from "../../create_stats.js";
 import onWindowResize from "../calculations/onWindowResize.js";
@@ -34,11 +34,12 @@ export default (
 
   // The stats display for AR
   const stats = createStats();
-  const container = document.createElement("div");
-  const goodthing = document.getElementById("goodthing");
+  const ARContainer = document.createElement("div");
+  ARContainer.id = "ar-container";
+  const bubbleSort = document.getElementById("bubble-sort");
   // document.body.appendChild(container);
   // $FlowFixMe - Flow doesn't know about the DOM
-  goodthing.appendChild(container);
+  bubbleSort.appendChild(ARContainer);
 
   // Make the scene, camera, geometry, etc.
   const scene = new THREE.Scene();
@@ -68,7 +69,7 @@ export default (
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.xr.enabled = true;
-  container.appendChild(renderer.domElement);
+  ARContainer.appendChild(renderer.domElement);
 
   const reticleStuff = addReticleToScene({ stats, scene, camera, renderer });
 
@@ -95,17 +96,19 @@ export default (
   //   const controls = new OrbitControls(camera, renderer.domElement);
   //   controls.enableZoom = false;
 
-  container.appendChild(stats.dom);
+  ARContainer.appendChild(stats.dom);
 
+  const domOverlayDiv = document.getElementById("dom-overlay");
   const button = ARButton.createButton(renderer, {
     optionalFeatures: ["hit-test"],
     domOverlay: {
-      root: document.body,
+      root: domOverlayDiv,
     },
   });
 
+  // document.body.appendChild(button);
   // $FlowFixMe
-  document.body.appendChild(button);
+  domOverlayDiv.appendChild(button);
 
   animate(
     { stats, scene, camera, renderer, reticleStuff, cubes },

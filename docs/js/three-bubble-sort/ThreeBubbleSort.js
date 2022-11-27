@@ -89,8 +89,9 @@ export default (props /*: Props */) /*: string */ => {
   });
 
   return html`
-    <div className="${styles.bubbleSort}">
+    <div id="bubble-sort" className="${styles.bubbleSort}">
       <div id="console-ui"></div>
+      <div id="dom-overlay"></div>
       <${Params}
         cols="${state.cols}"
         rows="${state.rows}"
