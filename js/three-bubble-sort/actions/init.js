@@ -6,7 +6,7 @@ import * as THREE from "../../../web_modules/three.js";
 // --------------------------------------------------
 // HELPERS
 // --------------------------------------------------
-import ARButton from "../../vendor/ARButton.js";
+import ARButton from "./ARButton.js";
 import { OrbitControls } from "../../../web_modules/three/examples/jsm/controls/OrbitControls.js";
 import createStats from "../../create_stats.js";
 import onWindowResize from "../calculations/onWindowResize.js";
