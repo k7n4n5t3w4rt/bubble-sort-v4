@@ -6,7 +6,7 @@ import * as THREE from "../../../web_modules/three.js";
 // --------------------------------------------------
 // HELPERS
 // --------------------------------------------------
-import ARButton from "../../vendor/ARButton.js";
+import ARButton from "./ARButton.js";
 import { OrbitControls } from "../../../web_modules/three/examples/jsm/controls/OrbitControls.js";
 import createStats from "../../create_stats.js";
 import onWindowResize from "../calculations/onWindowResize.js";
@@ -42,8 +42,8 @@ export default (
   bubbleSort.appendChild(ARContainer);
 
   // Make the scene, camera, geometry, etc.
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(
+  const scene /*: Object */ = new THREE.Scene();
+  const camera /*: Object */ = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
     0.01,
@@ -99,13 +99,17 @@ export default (
   ARContainer.appendChild(stats.dom);
 
   const domOverlayDiv = document.getElementById("dom-overlay");
-  const button = ARButton.createButton(renderer, {
-    requiredFeatures: ["hit-test"],
-    optionalFeatures: ["dom-overlay"],
-    domOverlay: {
-      root: domOverlayDiv,
+  const button = ARButton.createButton(
+    `${window.location.host}?speed=${speed}&scalex=${scaleX}scaley=${scaleY}&scalez=${scaleZ}&cols=${cols}&rows=${rows}`,
+    renderer,
+    {
+      requiredFeatures: ["hit-test"],
+      optionalFeatures: ["dom-overlay"],
+      domOverlay: {
+        root: domOverlayDiv,
+      },
     },
-  });
+  );
 
   // document.body.appendChild(button);
   // $FlowFixMe

@@ -1,12 +1,13 @@
 // @flow
 const createButton = (
+  locationString /*: string */,
   renderer /*: function */,
   sessionInit /*: Object */ = {},
 ) /*: void | HTMLAnchorElement | HTMLButtonElement */ => {
-  // const existingButton = document.getElementById("ARButton");
-  // if (existingButton !== null) {
-  //   existingButton.remove();
-  // }
+  const existingButton = document.getElementById("ARButton");
+  if (existingButton !== null) {
+    existingButton.remove();
+  }
   let currentSession = null;
 
   const button = document.createElement("button");
@@ -30,23 +31,16 @@ const createButton = (
     function onSessionEnded(/*event*/) {
       if (currentSession !== null) {
         currentSession.removeEventListener("end", onSessionEnded);
-
-        button.textContent = "START AR";
-        // sessionInit.domOverlay.root.style.display = "none";
-        // button.style.display = "none";
-
+        // button.textContent = "START AR";
         currentSession = null;
+        window.location.replace(locationString);
       }
     }
 
-    //
-
     button.style.display = "";
-
     button.style.cursor = "pointer";
     button.style.left = "calc(50% - 50px)";
     button.style.width = "100px";
-
     button.textContent = "START AR";
 
     button.onmouseenter = function () {
