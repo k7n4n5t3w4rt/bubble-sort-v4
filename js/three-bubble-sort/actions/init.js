@@ -100,7 +100,8 @@ export default (
 
   const domOverlayDiv = document.getElementById("dom-overlay");
   const button = ARButton.createButton(renderer, {
-    optionalFeatures: ["hit-test"],
+    requiredFeatures: ["hit-test"],
+    optionalFeatures: ["dom-overlay"],
     domOverlay: {
       root: domOverlayDiv,
     },
