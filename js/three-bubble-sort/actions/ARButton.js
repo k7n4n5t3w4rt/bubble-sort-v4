@@ -32,8 +32,8 @@ const createButton = (
       if (currentSession !== null) {
         currentSession.removeEventListener("end", onSessionEnded);
         // button.textContent = "START AR";
-        currentSession = null;
-        window.location.replace(locationString);
+        // currentSession = null;
+        window.location.assign(locationString);
       }
     }
 

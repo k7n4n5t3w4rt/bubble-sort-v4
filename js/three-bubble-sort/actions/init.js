@@ -100,7 +100,7 @@ export default (
 
   const domOverlayDiv = document.getElementById("dom-overlay");
   const button = ARButton.createButton(
-    `${window.location.host}?speed=${speed}&scalex=${scaleX}scaley=${scaleY}&scalez=${scaleZ}&cols=${cols}&rows=${rows}`,
+    `/?speed=${speed}&scalex=${scaleX}&scaley=${scaleY}&scalez=${scaleZ}&cols=${cols}&rows=${rows}`,
     renderer,
     {
       requiredFeatures: ["hit-test"],
