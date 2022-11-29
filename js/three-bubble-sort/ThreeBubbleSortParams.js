@@ -34,9 +34,23 @@ const [styles] = createStyles({
 });
 
 rawStyles({
+  output: {
+    display: "block",
+    float: "left",
+    fontSize: "1rem",
+    padding: "0.2rem",
+    color: "white",
+    fontWeight: "bold",
+    textShadow: "2px 2px 2px grey",
+  },
   label: {
     display: "block",
-    padding: "0.5rem",
+    float: "left",
+    fontSize: "1rem",
+    padding: "0.2rem",
+    color: "white",
+    fontWeight: "bold",
+    textShadow: "2px 2px 2px grey",
   },
   ["input[type=text]"]: {
     boxSizing: "border-box !important",
@@ -85,38 +99,65 @@ export default (props /*: Props */) /*: string */ => {
       <fieldset>
         <div>
           <label for="cols">Columns:</label>
+          <output id="colsOutput" name="colsOutput" for="cols"
+            >${cols.toString()}</output
+          >
           <input
-            type="text"
+            type="range"
             id="cols"
             name="cols"
+            min="1"
+            max="100"
+            step="1"
             value="${cols.toString()}"
             onChange=${changeCols(dispatch, "cols")}
           />
         </div>
         <div>
           <label for="rows">Rows:</label>
+          <output id="rowsOutput" name="rowsOutput" for="rows"
+            >${rows.toString()}</output
+          >
           <input
-            type="text"
-            id="rows"
+            type="range"
             name="rows"
+            id="rows"
+            min="1"
+            max="100"
+            step="1"
             onChange=${changeCols(dispatch, "rows")}
             value="${rows.toString()}"
           />
         </div>
         <div>
-          <label for="rows">Speed:</label>
+          <label for="speed">Speed:</label>
+          <output id="speedOutput" name="speedOutput" for="speed"
+            >${speed.toString()}</output
+          >
           <input
-            type="text"
+            type="range"
             id="speed"
             name="speed"
-            onChange=${changeCols(dispatch, "rows")}
+            min="1"
+            max="100"
+            step="1"
+            onChange=${changeCols(dispatch, "speed")}
             value="${speed.toString()}"
           />
         </div>
         <div>
           <label for="scaleX">Xcm:</label>
+          <output
+            id="scaleXOutput"
+            name="scaleXOutput"
+            min="1"
+            max="100"
+            step="1"
+            for="scaleX"
+            >${scaleX.toString()}</output
+          >
           <input
-            type="text"
+            type="range"
             id="scaleX"
             name="scaleX"
             onChange=${changeCols(dispatch, "scaleX")}
@@ -125,20 +166,32 @@ export default (props /*: Props */) /*: string */ => {
         </div>
         <div>
           <label for="scaleY">Ycm:</label>
+          <output id="scaleYOutput" name="scaleYOutput" for="scaleY"
+            >${scaleY.toString()}</output
+          >
           <input
-            type="text"
+            type="range"
             id="scaleY"
             name="scaleY"
+            min="1"
+            max="100"
+            step="1"
             onChange=${changeCols(dispatch, "scaleY")}
             value="${scaleY.toString()}"
           />
         </div>
         <div>
           <label for="scaleZ">Zcm:</label>
+          <output id="scaleZOutput" name="scaleZOutput" for="scaleZ"
+            >${scaleZ.toString()}</output
+          >
           <input
-            type="text"
+            type="range"
             id="scaleZ"
             name="scaleZ"
+            min="1"
+            max="100"
+            step="1"
             onChange=${changeCols(dispatch, "scaleZ")}
             value="${scaleZ.toString()}"
           />

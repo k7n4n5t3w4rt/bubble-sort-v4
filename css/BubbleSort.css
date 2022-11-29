@@ -1,4 +1,7 @@
+html {
+	font-size: 30px;
+}
+
 body {
 	font-family: "Poppins","Helvetica","Arial","Lucida",sans-serif;
-	font-size: .9rem;
 }
