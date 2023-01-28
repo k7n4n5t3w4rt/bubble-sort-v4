@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>v1.25</title>
+	<title>v4.26</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -60,27 +60,33 @@
 		<fieldset>
 			<div>
 				<label for="cols">Columns:</label>
-				<input type="text" id="cols" name="cols" value="5" />
+				<output id="colsOutput" name="colsOutput" for="cols">5</output>
+				<input type="range" id="cols" name="cols" min="1" max="100" step="1" value="5" />
 			</div>
 			<div>
 				<label for="rows">Rows:</label>
-				<input type="text" id="rows" name="rows" value="4" />
+				<output id="rowsOutput" name="rowsOutput" for="rows">4</output>
+				<input type="range" name="rows" id="rows" min="1" max="100" step="1" value="4" />
 			</div>
 			<div>
-				<label for="rows">Speed:</label>
-				<input type="text" id="speed" name="speed" value="1" />
+				<label for="speed">Speed:</label>
+				<output id="speedOutput" name="speedOutput" for="speed">1</output>
+				<input type="range" id="speed" name="speed" min="1" max="100" step="1" value="1" />
 			</div>
 			<div>
 				<label for="scaleX">Xcm:</label>
-				<input type="text" id="scaleX" name="scaleX" value="10" />
+				<output id="scaleXOutput" name="scaleXOutput" min="1" max="100" step="1" for="scaleX">10</output>
+				<input type="range" id="scaleX" name="scaleX" value="10" />
 			</div>
 			<div>
 				<label for="scaleY">Ycm:</label>
-				<input type="text" id="scaleY" name="scaleY" value="10" />
+				<output id="scaleYOutput" name="scaleYOutput" for="scaleY">10</output>
+				<input type="range" id="scaleY" name="scaleY" min="1" max="100" step="1" value="10" />
 			</div>
 			<div>
 				<label for="scaleZ">Zcm:</label>
-				<input type="text" id="scaleZ" name="scaleZ" value="10" />
+				<output id="scaleZOutput" name="scaleZOutput" for="scaleZ">10</output>
+				<input type="range" id="scaleZ" name="scaleZ" min="1" max="100" step="1" value="10" />
 			</div>
 		</fieldset>
 	</div>

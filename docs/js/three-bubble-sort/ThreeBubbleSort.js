@@ -76,7 +76,7 @@ export default (props /*: Props */) /*: string */ => {
   });
 
   useEffect(() => {
-    setupMobileDebug();
+    // setupMobileDebug();
     let stats = createStats();
     init(
       state.cols,
