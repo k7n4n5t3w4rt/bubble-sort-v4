@@ -1,0 +1,97 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+	<meta charset="utf-8">
+	<title>v4.27</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="manifest" href="site.webmanifest">
+	<link rel="apple-touch-icon" href="icon.png">
+	<!-- Place favicon.ico in the root directory -->
+
+	<!--Import materialize.css-->
+	<link rel="stylesheet" href="/css/reset.css">
+	<link type="text/css" rel="stylesheet" href="/css/materialize.css"  media="screen,projection"/>
+	<!-- Google Icons used for Materialize.css and other places -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- The main body font -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+	<!-- Reset the browser defaults -->
+	<link rel="stylesheet" href="/css/normalize.css">
+	<!-- From HTML5 Boilerplate -->
+	<link rel="stylesheet" href="/css/main.css">
+	<!-- The loading spinners -->
+	<link rel="stylesheet" href="/css/spinkit.css">
+	<!-- Our local CSS -->
+	<link rel="stylesheet" href="/js/grid-display/main.css">
+	<link rel="stylesheet" href="/js/grid-display/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/index.css">
+	<link rel="stylesheet" href="/css/BubbleSort.css">
+
+	<meta name="theme-color" content="#fafafa">
+
+	<script>
+		// ENV
+		window.NODE_ENV = "development";
+		window.REMEMBER_ME = false;
+	</script>
+
+	<script src="/js/vendor/modernizr-3.8.0.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/eruda"></script>
+	<script src="/js/plugins.js"></script>
+	<script src="/js/main.js" type="module"></script>
+
+	<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+	<script>
+		window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+		ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+	</script>
+	<script src="https://www.google-analytics.com/analytics.js" async></script>
+</head>
+
+<body>
+	<div id="goodthing" data-goodthing><div id="bubble-sort" class="bubbleSort_wmvztpsu">
+	<div id="dom-overlay">
+		<div id="console-ui"></div>
+	</div>
+	<div id="params-container" class="paramsContainer_cisffwmvzcdc">
+		<fieldset>
+			<div>
+				<label for="cols">Columns:</label>
+				<output id="colsOutput" name="colsOutput" for="cols">5</output>
+				<input type="range" id="cols" name="cols" min="1" max="100" step="1" value="5" />
+			</div>
+			<div>
+				<label for="rows">Rows:</label>
+				<output id="rowsOutput" name="rowsOutput" for="rows">4</output>
+				<input type="range" name="rows" id="rows" min="1" max="100" step="1" value="4" />
+			</div>
+			<div>
+				<label for="speed">Speed:</label>
+				<output id="speedOutput" name="speedOutput" for="speed">1</output>
+				<input type="range" id="speed" name="speed" min="1" max="10" step="1" value="1" />
+			</div>
+			<div>
+				<label for="scaleX">Xcm:</label>
+				<output id="scaleXOutput" name="scaleXOutput" min="1" max="100" step="1" for="scaleX">10</output>
+				<input type="range" id="scaleX" name="scaleX" value="10" />
+			</div>
+			<div>
+				<label for="scaleY">Ycm:</label>
+				<output id="scaleYOutput" name="scaleYOutput" for="scaleY">10</output>
+				<input type="range" id="scaleY" name="scaleY" min="1" max="100" step="1" value="10" />
+			</div>
+			<div>
+				<label for="scaleZ">Zcm:</label>
+				<output id="scaleZOutput" name="scaleZOutput" for="scaleZ">10</output>
+				<input type="range" id="scaleZ" name="scaleZ" min="1" max="100" step="1" value="10" />
+			</div>
+		</fieldset>
+	</div>
+</div></div data-goodthing>
+	<!-- <script type="text/javascript" src="/js/vendor/materialize.js"></script> -->
+</body>
+
+</html>
