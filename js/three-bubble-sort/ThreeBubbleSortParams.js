@@ -160,6 +160,9 @@ export default (props /*: Props */) /*: string */ => {
             type="range"
             id="scaleX"
             name="scaleX"
+            min="1"
+            max="100"
+            step="1"
             onChange=${changeCols(dispatch, "scaleX")}
             value="${scaleX.toString()}"
           />
