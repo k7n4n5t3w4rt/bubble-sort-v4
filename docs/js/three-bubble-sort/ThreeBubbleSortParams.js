@@ -82,7 +82,7 @@ export default (props /*: Props */) /*: string */ => {
 
   useEffect(() => {});
 
-  const changeCols = (
+  const changeParam = (
     dispatch /*: function */,
     param /*: string */,
   ) /*: function */ => (
@@ -110,7 +110,7 @@ export default (props /*: Props */) /*: string */ => {
             max="100"
             step="1"
             value="${cols.toString()}"
-            onChange=${changeCols(dispatch, "cols")}
+            onChange=${changeParam(dispatch, "cols")}
           />
         </div>
         <div>
@@ -125,7 +125,7 @@ export default (props /*: Props */) /*: string */ => {
             min="1"
             max="100"
             step="1"
-            onChange=${changeCols(dispatch, "rows")}
+            onChange=${changeParam(dispatch, "rows")}
             value="${rows.toString()}"
           />
         </div>
@@ -141,19 +141,13 @@ export default (props /*: Props */) /*: string */ => {
             min="1"
             max="10"
             step="1"
-            onChange=${changeCols(dispatch, "speed")}
+            onChange=${changeParam(dispatch, "speed")}
             value="${speed.toString()}"
           />
         </div>
         <div>
           <label for="scaleX">Xcm:</label>
-          <output
-            id="scaleXOutput"
-            name="scaleXOutput"
-            min="1"
-            max="100"
-            step="1"
-            for="scaleX"
+          <output id="scaleXOutput" name="scaleXOutput" for="scaleX"
             >${scaleX.toString()}</output
           >
           <input
@@ -163,7 +157,7 @@ export default (props /*: Props */) /*: string */ => {
             min="1"
             max="100"
             step="1"
-            onChange=${changeCols(dispatch, "scaleX")}
+            onChange=${changeParam(dispatch, "scaleX")}
             value="${scaleX.toString()}"
           />
         </div>
@@ -179,7 +173,7 @@ export default (props /*: Props */) /*: string */ => {
             min="1"
             max="100"
             step="1"
-            onChange=${changeCols(dispatch, "scaleY")}
+            onChange=${changeParam(dispatch, "scaleY")}
             value="${scaleY.toString()}"
           />
         </div>
@@ -195,7 +189,7 @@ export default (props /*: Props */) /*: string */ => {
             min="1"
             max="100"
             step="1"
-            onChange=${changeCols(dispatch, "scaleZ")}
+            onChange=${changeParam(dispatch, "scaleZ")}
             value="${scaleZ.toString()}"
           />
         </div>
