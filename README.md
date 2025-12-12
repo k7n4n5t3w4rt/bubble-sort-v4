@@ -1,6 +1,6 @@
-# GoodThing
+# BubbleSort
 
-Preact static website generator boilerplate.
+BubbleSort visualization built with Preact and Three.js on top of the GoodThing boilerplate (static generation, ES modules, no compile step during development).
 
   - No WebPack
   - No compiling during development
@@ -73,7 +73,7 @@ npx cypress install
 With the server running:
 
 ```
-npm run generate
+npm run build
 ```
 
 [9] Test it locally on port :3000 with Browsersync (I hardly ever do this)
@@ -93,7 +93,7 @@ npm run github-pages
 [11] Clean up your static files
 
 ```
-npm run generate:clear
+npm run build:clear
 ```
 
 ## `htm` - "JSX-like syntax in plain JavaScript - no transpiler necessary"

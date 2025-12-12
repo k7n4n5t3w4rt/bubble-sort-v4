@@ -5,10 +5,6 @@ import { html } from "../web_modules/htm/preact.js";
 import { AppProvider } from "./AppContext.js";
 import ThreeBubbleSort from "./three-bubble-sort/ThreeBubbleSort.js";
 // import registerServiceWorker from "./registerServiceWorker.js";
-const finishCounter = {
-  ALGORITHMS: [],
-  COUNT: 0,
-};
 
 /*::
 type Props = {

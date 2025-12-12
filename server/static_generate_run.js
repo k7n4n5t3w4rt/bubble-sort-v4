@@ -1,5 +1,4 @@
 // @flow
-import conf from "./config.js";
 import { appPaths } from "./static_config.js";
 import requestPromise from "./request_promise.js";
 import { copyStaticFiles } from "./static_generate.js";
